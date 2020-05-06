@@ -7,7 +7,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a class="nav-link" href="#">Home
         </a>
       </li>
@@ -24,7 +24,7 @@
 <!-- Navbar -->
 
 <!-- Full Page Intro -->
-<div class="view full-page-intro background-image" <!-- Mask & flexbox options-->
+<div class="view landing-view full-page-intro background-image" <!-- Mask & flexbox options-->
   <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
 
     <!-- Content -->
@@ -50,19 +50,14 @@
           </p>
 
           <a target="_blank" class="btn btn-indigo btn-lg" data-toggle="modal" data-target="#Log-in-modal">
-            Log in
-
-          </a>
-          <a target="_blank" class="btn btn-indigo btn-lg">
-            Sign up
-
+            Get Started
           </a>
 
         </div>
         <!--Grid column-->
 
         <!--Grid column-->
-        <div class="col-md-6 col-xl-5 p-3 mb-4">
+        <div class="col-md-6 col-xl-5 p-md-3 mb-md-4 mb-0">
 
           <!--IMAGE -->
           <img src="https://www.clipartkey.com/mpngs/m/155-1552244_pet-insurance-width-300-height-300-cartoon.png"
@@ -88,10 +83,10 @@
 
 <!--Main layout-->
 <main>
-  <div class="container">
+  <div class="container d-none d-md-block ">
 
     <!--Section: PET CARE ICONS-->
-    <section class="mt-3 wow fadeIn">
+    <section class="mt-3 wow fadeIn ">
 
       <!--Grid row-->
       <div class="row">
@@ -102,8 +97,6 @@
         </div>
         <div class="col mx-5 d-flex align-content-center"><img src="/images/Dog_Vector.png" class="img-fluid " alt="">
         </div>
-
-
 
       </div>
       <!--Grid row-->
@@ -159,7 +152,7 @@
               <label data-error="wrong" data-success="right" for="modalLRInput11">Your password</label>
             </div>
             <div class="text-center mt-2">
-              <button class="btn btn-indigo">Log in <i class="fas fa-sign-in ml-1"></i></button>
+              <button id="login-button" class="btn btn-indigo">Log in <i class="fas fa-sign-in ml-1"></i></button>
             </div>
           </div>
           <!--Footer-->
@@ -196,7 +189,7 @@
             </div>
 
             <div class="text-center form-sm mt-2">
-              <button class="btn btn-indigo">Sign up <i class="fas fa-sign-in ml-1"></i></button>
+              <button id="signup" class="btn btn-indigo">Sign up <i class="fas fa-sign-in ml-1"></i></button>
             </div>
 
           </div>
