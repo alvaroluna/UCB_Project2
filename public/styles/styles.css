@@ -2,6 +2,11 @@
   line-height: 2.5;
 }
 
+/* change default active color of tab pill to indigo */
+a.active.nav-link {
+  background-color: #3f51b5 !important;
+}
+
 html,
 body,
 header,
