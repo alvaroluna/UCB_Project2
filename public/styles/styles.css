@@ -1,3 +1,22 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+
+/* //////////////// */
+/* google map style */
+/* //////////////// */
+#map {
+  /* Always set the map height explicitly to define the size of the div element that contains the map. */
+  height: 100%;
+  /* how do i get this to work???xs */
+  height: 600px;
+}
+
+html,
+body {
+  /* Optional: Makes the sample page fill the window. */
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
