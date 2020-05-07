@@ -170,28 +170,159 @@
 
           <!--Body-->
           <div class="modal-body">
-            <div class="md-form form-sm mb-5">
-              <i class="fas fa-envelope prefix"></i>
-              <input type="email" id="modalLRInput12" class="form-control form-control-sm validate">
-              <label data-error="wrong" data-success="right" for="modalLRInput12">Your email</label>
-            </div>
+            <form>
+              {{!-- Name--}}
+              <div class="form-row ">
+                <!-- Grid column -->
+                <div class="col">
+                  <!-- Material input -->
+                  <div class="md-form form-sm ">
+                    <i class="fas fa-user prefix"></i>
+                    <input type="text" id="new-first-name" class="form-control form-control-sm validate">
+                    <label data-error="wrong" data-success="right" for="modalLRInput12">First Name</label>
+                  </div>
+                </div>
+                <!-- Grid column -->
 
-            <div class="md-form form-sm mb-5">
-              <i class="fas fa-lock prefix"></i>
-              <input type="password" id="modalLRInput13" class="form-control form-control-sm validate">
-              <label data-error="wrong" data-success="right" for="modalLRInput13">Your password</label>
-            </div>
+                <!-- Grid column -->
+                <div class="col">
+                  <!-- Material input -->
+                  <div class="md-form form-sm ">
+                    <input type="text" id="new-last-name" class="form-control form-control-sm validate">
+                    <label data-error="wrong" data-success="right" for="modalLRInput12">Last Name</label>
+                  </div>
+                </div>
+                <!-- Grid column -->
+              </div>
+              {{!-- /. Name --}}
 
-            <div class="md-form form-sm mb-4">
-              <i class="fas fa-lock prefix"></i>
-              <input type="password" id="modalLRInput14" class="form-control form-control-sm validate">
-              <label data-error="wrong" data-success="right" for="modalLRInput14">Repeat password</label>
-            </div>
+              {{!-- Drivers Lic info and Age --}}
+              <div class="form-row">
 
-            <div class="text-center form-sm mt-2">
-              <button id="signup" class="btn btn-indigo">Sign up <i class="fas fa-sign-in ml-1"></i></button>
-            </div>
+                <!-- Grid column -->
+                <div class="col ">
+                  <!-- Material input -->
+                  <div class="md-form form-sm ">
+                    <i class="fas fa-car-alt prefix"></i>
+                    <input type="text" id="new-dl-num" class="form-control form-control-sm validate">
+                    <label data-error="wrong" data-success="right" for="modalLRInput12">Driver Lic. #</label>
+                  </div>
+                </div>
+                <!-- Grid column -->
 
+                <!-- Grid column -->
+                <div class="col">
+                  <!-- Material input -->
+                  <div class="md-form form-sm ">
+                    <input type="text" id="new-dl-state" class="form-control form-control-sm validate">
+                    <label data-error="wrong" data-success="right" for="modalLRInput12">Lic. State</label>
+                  </div>
+                </div>
+                <!-- Grid column -->
+
+                <div class="col">
+                  <div class="md-form form-sm ">
+                    <input type="Date" id="new-dob" class="form-control form-control-sm validate">
+                    <label data-error="wrong" data-success="right" for="modalLRInput12">Date of Birth</label>
+                  </div>
+                </div>
+              </div>
+              {{!-- /. Drivers Lic info and Age --}}
+
+              {{!-- Address --}}
+              <div class="form-row ">
+                <!-- Grid column -->
+                <div class="col">
+                  <!-- Material input -->
+                  <div class="md-form form-sm ">
+                    <i class="fas fa-home prefix"></i>
+                    <input type="text" id="new-address" class="form-control form-control-sm validate">
+                    <label data-error="wrong" data-success="right" for="modalLRInput12">Street Address</label>
+                  </div>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-3">
+                  <!-- Material input -->
+                  <div class="md-form form-sm ">
+                    <input type="text" id="new-city" class="form-control form-control-sm validate">
+                    <label data-error="wrong" data-success="right" for="modalLRInput12">City</label>
+                  </div>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-2">
+                  <!-- Material input -->
+                  <div class="md-form form-sm ">
+                    <input type="text" id="new-state" class="form-control form-control-sm validate">
+                    <label data-error="wrong" data-success="right" for="modalLRInput12">State</label>
+                  </div>
+                </div>
+                <!-- Grid column -->
+              </div>
+              {{!-- /. Address --}}
+
+
+
+              {{!-- Email --}}
+              <div class="form-row ">
+                <div class="col">
+                  <div class="md-form form-sm ">
+                    <i class="fas fa-envelope prefix"></i>
+                    <input type="email" id="new-email" class="form-control form-control-sm validate">
+                    <label data-error="wrong" data-success="right" for="modalLRInput12">Your email</label>
+                  </div>
+                </div>
+              </div>
+              {{!-- /. Email --}}
+
+              {{!-- Phone Number --}}
+              <div class="form-row ">
+                <div class="col">
+                  <div class="md-form form-sm ">
+                    <i class="fas fa-phone prefix"></i>
+                    <input type="text" id="new-phone" class="form-control form-control-sm validate">
+                    <label data-error="wrong" data-success="right" for="modalLRInput12">Your Phone Number</label>
+                  </div>
+                </div>
+              </div>
+              {{!-- /. Phone Number --}}
+
+              {{!-- Password --}}
+              <div class="form-row">
+                <div class="col">
+                  <div class="md-form form-sm">
+                    <i class="fas fa-lock prefix"></i>
+                    <input type="password" id="new-password" class="form-control form-control-sm validate">
+                    <label data-error="wrong" data-success="right" for="modalLRInput13">Your password</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="col">
+                  <div class="md-form form-sm ">
+                    <i class="fas fa-lock prefix"></i>
+                    <input type="password" id="new-password-val" class="form-control form-control-sm validate">
+                    <label data-error="wrong" data-success="right" for="modalLRInput14">Repeat password</label>
+                  </div>
+                </div>
+              </div>
+              {{!-- /. Password --}}
+
+              <div class="text-center form-sm mb-2">
+                <button id="signup" class="btn btn-indigo">Sign up <i class="fas fa-sign-in ml-1"></i></button>
+              </div>
+
+
+            </form>
+            <!-- Terms of service -->
+            <p class="text-center">By clicking
+              <em>Sign up</em> you agree to our
+              <a href="#" target="_blank">terms of service</a>
+            </p>
           </div>
           <!--Footer-->
           <div class="modal-footer">
