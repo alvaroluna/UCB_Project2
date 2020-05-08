@@ -1,17 +1,15 @@
 module.exports = function(sequelize, DataTypes) {
-    var Task = sequelize.define("Task", {
-        vet_visit: { type: DataTypes.BOOLEAN, allowNull: false },
-        walk_pet: { type: DataTypes.BOOLEAN, allowNull: false },
-        get_supplies: { type: DataTypes.BOOLEAN, allowNull: false },
-    });
-    
-    Task.associate = function(models) {
-        Task.belongsTo(models.Volunteer, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
-    };
-
-    return Task;
+  var Task = sequelize.define("Task", {
+    volunteerId: DataTypes.INTEGER,
+    task: { type: DataTypes.ENUM, values: ["01", "02", "03", "04"] },
+    date: DataTypes.DATE,
+    seniorId: DataTypes.INTEGER,
+    completed: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
+    specialInstr: DataTypes.TEXT
+  });
+  return Task;
 };
