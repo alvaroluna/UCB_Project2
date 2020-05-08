@@ -30,10 +30,10 @@
 <main id="app-wrapper" class="background-image d-flex justify-content-center h-mv">
     <div class="container custom-container p-1">
         {{!-- Panel Row --}}
-        <div class="row row-cols-1 row-cols-md-3 mw-100 mx-auto p-2 px-md-3 ">
+        <div class="row row-cols-1 row-cols-md-3  mx-auto p-2 px-md-3 ">
 
             {{!-- Available Task Panel--}}
-            <div class="col p-2">
+            <div class="col  p-2">
                 {{!-- Welcome Tron --}}
                 <div class="jumbotron">
                     <h2 class="h1-responsive">Hello, Username!</h2>
@@ -52,12 +52,8 @@
                 {{!--  --}}
 
                 {{!-- Calendar  --}}
-                <div class="card d-none d-sm-block bg-info">
+                <div class="card d-none d-sm-block bg-info ">
                     <div class="card-body white">
-                        {{!-- <h5 class="card-title">May 2020<span class="float-right"><a class="mr-2" href=""><i
-                                        class="fas fa-arrow-left "></i></a><a href=""><i
-                                        class="fas fa-arrow-right "></i></a></span></h5> --}}
-
                         <h5 class="card-title">May 2020<span class="float-right">
                                 {{!-- Arrow Buttons --}}
                                 <span class="badge badge-pill orange mr-2"><a href=""><i
@@ -66,90 +62,104 @@
                                             class="fas fa-angle-right white-text"></i></a></span>
 
                             </span></h5>
+                        <div class="table-responsive ">
+                            <table class="table table-sm border w-auto mx-auto">
+
+                                <thead class="text-center ">
+                                    <tr>
+
+                                        <th scope="col">SUN</th>
+                                        <th scope="col">MON</th>
+                                        <th scope="col">TUE</th>
+                                        <th scope="col">WED</th>
+                                        <th scope="col">THU</th>
+                                        <th scope="col">FRI</th>
+                                        <th scope="col">SAT</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody class="text-center">
+                                    {{!-- Week --}}
+
+                                    {{!-- FIX CALENDAR BUTTON CLASS TO MAKE WIDER FOR BIG SCREEN --}}
+                                    <tr>
+                                        <td class="custom-td" style="width:max-content">
+                                            <button type="button"
+                                                class="btn btn-outline-blue-grey btn-sm m-0 px-2 waves-effect"
+                                                disabled>01</button>
+
+                                        </td>
+
+                                        <td>
+                                            <button type="button"
+                                                class="btn btn-outline-blue-grey btn-sm m-0 px-2 waves-effect"
+                                                disabled>02</button>
+                                        </td>
+                                        <td>
+                                            <button type="button"
+                                                class="btn btn-info btn-sm m-0 px-2 waves-effect">03</button>
+                                        </td>
+                                        <td>
+                                            <button type="button"
+                                                class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">04</button>
+                                        </td>
+                                        <td>
+                                            <button type="button"
+                                                class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">05</button>
+                                        </td>
+                                        <td>
+                                            <button type="button"
+                                                class="btn btn-outline-blue-grey btn-sm px-2 m-0 waves-effect"
+                                                disabled>06</button>
+                                        </td>
+                                        <td>
+                                            <button type="button"
+                                                class="btn btn-outline-blue-grey btn-sm px-2 m-0 waves-effect"
+                                                disabled>07</button>
+                                        </td>
+                                    </tr>
+                                    {{!-- /. Week --}}
+
+                                    {{!-- Week --}}
+                                    <tr>
+                                        <td class="custom-td" style="width:max-content">
+                                            <button type="button"
+                                                class="btn btn-outline-blue-grey btn-sm m-0 px-2 waves-effect"
+                                                disabled>01</button>
+
+                                        </td>
+                                        <td>
+                                            <button type="button"
+                                                class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">09</button>
+                                        </td>
+                                        <td>
+                                            <button type="button"
+                                                class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">10</button>
+                                        </td>
+                                        <td>
+                                            <button type="button"
+                                                class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">11</button>
+                                        </td>
+                                        <td>
+                                            <button type="button"
+                                                class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">12</button>
+                                        </td>
+                                        <td>
+                                            <button type="button"
+                                                class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">13</button>
+                                        </td>
+                                        <td>
+                                            <button type="button"
+                                                class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">14</button>
+                                        </td>
+                                    </tr>
+                                    {{!-- /. Week --}}
+
+                                </tbody>
+                            </table>
+                        </div>
 
 
-                        <table class="table table-sm border">
-                            <thead class="text-center ">
-                                <tr>
-
-                                    <th scope="col">SUN</th>
-                                    <th scope="col">MON</th>
-                                    <th scope="col">TUE</th>
-                                    <th scope="col">WED</th>
-                                    <th scope="col">THU</th>
-                                    <th scope="col">FRI</th>
-                                    <th scope="col">SAT</th>
-                                </tr>
-                            </thead>
-
-                            <tbody class="text-center">
-                                {{!-- Week --}}
-                                <tr>
-                                    <td>
-                                        <button type="button" class="btn btn-outline-blue-grey btn-sm m-0 waves-effect"
-                                            disabled>01</button>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-outline-blue-grey btn-sm m-0 waves-effect"
-                                            disabled>02</button>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-info btn-sm m-0 waves-effect">03</button>
-                                    </td>
-                                    <td>
-                                        <button type="button"
-                                            class="btn btn-outline-info btn-sm m-0 waves-effect">04</button>
-                                    </td>
-                                    <td>
-                                        <button type="button"
-                                            class="btn btn-outline-info btn-sm m-0 waves-effect">05</button>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-outline-blue-grey btn-sm m-0 waves-effect"
-                                            disabled>06</button>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-outline-blue-grey btn-sm m-0 waves-effect"
-                                            disabled>07</button>
-                                    </td>
-                                </tr>
-                                {{!-- /. Week --}}
-
-                                {{!-- Week --}}
-                                <tr>
-                                    <td>
-                                        <button type="button"
-                                            class="btn btn-outline-info btn-sm m-0 waves-effect">08</button>
-                                    </td>
-                                    <td>
-                                        <button type="button"
-                                            class="btn btn-outline-info btn-sm m-0 waves-effect">09</button>
-                                    </td>
-                                    <td>
-                                        <button type="button"
-                                            class="btn btn-outline-info btn-sm m-0 waves-effect">10</button>
-                                    </td>
-                                    <td>
-                                        <button type="button"
-                                            class="btn btn-outline-info btn-sm m-0 waves-effect">11</button>
-                                    </td>
-                                    <td>
-                                        <button type="button"
-                                            class="btn btn-outline-info btn-sm m-0 waves-effect">12</button>
-                                    </td>
-                                    <td>
-                                        <button type="button"
-                                            class="btn btn-outline-info btn-sm m-0 waves-effect">13</button>
-                                    </td>
-                                    <td>
-                                        <button type="button"
-                                            class="btn btn-outline-info btn-sm m-0 waves-effect">14</button>
-                                    </td>
-                                </tr>
-                                {{!-- /. Week --}}
-
-                            </tbody>
-                        </table>
 
                         <hr class="orange lighten-2">
 
@@ -237,18 +247,22 @@
                         </div>
                         <div id="task1" class="collapse" aria-labelledby="headingTwo" data-parent="#taskListAccordion">
                             <div class="card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-                                richardson ad
-                                squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
-                                quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
-                                on it
-                                squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                helvetica,
-                                craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
-                                excepteur
-                                butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic
-                                synth
-                                nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                {{!--                    --}}
+                                {{!-- google maps window --}}
+                                {{!--                    --}}
+                                <h5>Dog Walk Volunteer</h5>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div id="map"></div>
+
+
+
+                                    </div>
+                                </div>
+
+
+
+
                             </div>
                             <div class="card-footer ">
                                 <a id="completeTask1" class="mb-2 badge badge-pill info-color float-right "><i
@@ -341,7 +355,7 @@
             {{!-- /. Active Task Panel--}}
 
             {{!-- Recent Activity Panel--}}
-            <div class="col  p-1">
+            <div class="col   p-1">
                 <div class="card  text-center mb-3 h-100">
                     <div class="card-body">
                         <h4 class="card-title mb-2">Activity</h4>
@@ -416,48 +430,53 @@
 
 
                 <div class="table-responsive">
-                    <table class="table table-sm">
+                    <table class="table table-sm border w-auto mx-auto">
+
                         <thead class="text-center ">
                             <tr>
 
-                                <th scope="col">SUN</th>
-                                <th scope="col">MON</th>
-                                <th scope="col">TUE</th>
-                                <th scope="col">WED</th>
-                                <th scope="col">THU</th>
-                                <th scope="col">FRI</th>
-                                <th scope="col">SAT</th>
+                                <th scope="col">SU</th>
+                                <th scope="col">MO</th>
+                                <th scope="col">TU</th>
+                                <th scope="col">WE</th>
+                                <th scope="col">TH</th>
+                                <th scope="col">FR</th>
+                                <th scope="col">SA</th>
                             </tr>
                         </thead>
 
                         <tbody class="text-center">
                             {{!-- Week --}}
+
+                            {{!-- FIX CALENDAR BUTTON CLASS TO MAKE WIDER FOR BIG SCREEN --}}
                             <tr>
-                                <td>
-                                    <button type="button" class="btn btn-outline-blue-grey btn-sm m-0 waves-effect"
+                                <td class="custom-td" style="width:max-content">
+                                    <button type="button" class="btn btn-outline-blue-grey btn-sm m-0 px-2 waves-effect"
                                         disabled>01</button>
+
                                 </td>
+
                                 <td>
-                                    <button type="button" class="btn btn-outline-blue-grey btn-sm m-0 waves-effect"
+                                    <button type="button" class="btn btn-outline-blue-grey btn-sm m-0 px-2 waves-effect"
                                         disabled>02</button>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-info btn-sm m-0 waves-effect">03</button>
+                                    <button type="button" class="btn btn-info btn-sm m-0 px-2 waves-effect">03</button>
                                 </td>
                                 <td>
                                     <button type="button"
-                                        class="btn btn-outline-info btn-sm m-0 waves-effect">04</button>
+                                        class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">04</button>
                                 </td>
                                 <td>
                                     <button type="button"
-                                        class="btn btn-outline-info btn-sm m-0 waves-effect">05</button>
+                                        class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">05</button>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-blue-grey btn-sm m-0 waves-effect"
+                                    <button type="button" class="btn btn-outline-blue-grey btn-sm px-2 m-0 waves-effect"
                                         disabled>06</button>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-blue-grey btn-sm m-0 waves-effect"
+                                    <button type="button" class="btn btn-outline-blue-grey btn-sm px-2 m-0 waves-effect"
                                         disabled>07</button>
                                 </td>
                             </tr>
@@ -465,33 +484,34 @@
 
                             {{!-- Week --}}
                             <tr>
-                                <td>
-                                    <button type="button"
-                                        class="btn btn-outline-info btn-sm m-0 waves-effect">08</button>
+                                <td class="custom-td" style="width:max-content">
+                                    <button type="button" class="btn btn-outline-blue-grey btn-sm m-0 px-2 waves-effect"
+                                        disabled>01</button>
+
                                 </td>
                                 <td>
                                     <button type="button"
-                                        class="btn btn-outline-info btn-sm m-0 waves-effect">09</button>
+                                        class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">09</button>
                                 </td>
                                 <td>
                                     <button type="button"
-                                        class="btn btn-outline-info btn-sm m-0 waves-effect">10</button>
+                                        class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">10</button>
                                 </td>
                                 <td>
                                     <button type="button"
-                                        class="btn btn-outline-info btn-sm m-0 waves-effect">11</button>
+                                        class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">11</button>
                                 </td>
                                 <td>
                                     <button type="button"
-                                        class="btn btn-outline-info btn-sm m-0 waves-effect">12</button>
+                                        class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">12</button>
                                 </td>
                                 <td>
                                     <button type="button"
-                                        class="btn btn-outline-info btn-sm m-0 waves-effect">13</button>
+                                        class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">13</button>
                                 </td>
                                 <td>
                                     <button type="button"
-                                        class="btn btn-outline-info btn-sm m-0 waves-effect">14</button>
+                                        class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">14</button>
                                 </td>
                             </tr>
                             {{!-- /. Week --}}
@@ -499,13 +519,7 @@
                         </tbody>
                     </table>
                 </div>
-
-
-
-
                 <hr class="orange lighten-2">
-
-
 
                 <ul class="list-group list-group-flush border rounded-sm justify-content-center mb-3">
                     <li class="list-group-item">Cras justo odio <span class="float-right"><button type="button"
@@ -525,7 +539,7 @@
             </div>
             <!--Footer-->
             <div class="modal-footer">
-                <button type="button" class="btn btn-sm btn-outline-indigo waves-effect ml-auto"
+                <button type="button" class="btn btn-sm btn-outline-info waves-effect ml-auto"
                     data-dismiss="modal">Close</button>
             </div>
         </div>
