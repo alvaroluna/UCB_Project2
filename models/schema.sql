@@ -1,5 +1,2 @@
-DROP DATABASE IF EXISTS volunteer_db;
-CREATE DATABASE volunteer_db;
-
-DROP DATABASE IF EXISTS testdb;
-CREATE DATABASE testdb;
+DROP DATABASE IF EXISTS seniorPets_db;
+CREATE DATABASE seniorPets_db;
