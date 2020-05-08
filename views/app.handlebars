@@ -11,14 +11,7 @@
                 <a class="nav-link" href="#">Home
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"></a>
-            </li>
-
         </ul>
-        <span class="navbar-text white-text">
-            For seniors needing services please contact admin@email.com
-        </span>
     </div>
 </nav>
 <!-- Navbar -->
@@ -40,7 +33,7 @@
                     <hr class="my-2">
                     <p>You have # of active quest. Check out the calendar to find more.
                     </p>
-                    <a target="_blank" class="btn btn-indigo btn-lg d-block d-sm-none" data-toggle="modal"
+                    <a target="_blank" class="btn btn-info btn-lg d-block d-sm-none" data-toggle="modal"
                         data-target="#Log-in-modal">
                         Open Calendar
                     </a>
@@ -52,8 +45,8 @@
                 {{!--  --}}
 
                 {{!-- Calendar  --}}
-                <div class="card d-none d-sm-block bg-info ">
-                    <div class="card-body white">
+                <div class="card d-none d-sm-block bg-info  ">
+                    <div class="card-body white border border-info rounded">
                         <h5 class="card-title">May 2020<span class="float-right">
                                 {{!-- Arrow Buttons --}}
                                 <span class="badge badge-pill orange mr-2"><a href=""><i
@@ -66,7 +59,7 @@
                             <table class="table table-sm border w-auto mx-auto">
 
                                 <thead class="text-center ">
-                                    <tr>
+                                    <tr class="d-none d-lg-table-row">
 
                                         <th scope="col">SUN</th>
                                         <th scope="col">MON</th>
@@ -76,6 +69,17 @@
                                         <th scope="col">FRI</th>
                                         <th scope="col">SAT</th>
                                     </tr>
+
+                                    <tr class="d-lg-none d-md-table-row">
+
+                                        <th scope="col">SU</th>
+                                        <th scope="col">MO</th>
+                                        <th scope="col">TU</th>
+                                        <th scope="col">WE</th>
+                                        <th scope="col">TH</th>
+                                        <th scope="col">FR</th>
+                                        <th scope="col">SA</th>
+                                    </tr>
                                 </thead>
 
                                 <tbody class="text-center">
@@ -83,45 +87,45 @@
 
                                     {{!-- FIX CALENDAR BUTTON CLASS TO MAKE WIDER FOR BIG SCREEN --}}
                                     <tr>
-                                        <td class="custom-td" style="width:max-content">
+                                        <td>
                                             <button type="button"
-                                                class="btn btn-outline-blue-grey btn-sm m-0 px-2 waves-effect"
+                                                class="btn btn-calendar btn-outline-blue-grey btn-sm m-0  waves-effect"
                                                 disabled>01</button>
 
                                         </td>
 
                                         <td>
-                                            <button type="button"
-                                                class="btn btn-outline-blue-grey btn-sm m-0 px-2 waves-effect"
+                                            <button type="button "
+                                                class="btn btn-calendar btn-outline-blue-grey btn-sm m-0 waves-effect"
                                                 disabled>02</button>
                                         </td>
                                         <td>
                                             <button type="button"
-                                                class="btn btn-info btn-sm m-0 px-2 waves-effect">03</button>
+                                                class="btn btn-calendar btn-info btn-sm m-0  waves-effect">03</button>
                                         </td>
                                         <td>
                                             <button type="button"
-                                                class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">04</button>
+                                                class="btn btn-calendar btn-outline-info btn-sm m-0  waves-effect">04</button>
                                         </td>
                                         <td>
                                             <button type="button"
-                                                class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">05</button>
+                                                class="btn btn-calendar btn-outline-info btn-sm m-0  waves-effect">05</button>
                                         </td>
                                         <td>
                                             <button type="button"
-                                                class="btn btn-outline-blue-grey btn-sm px-2 m-0 waves-effect"
+                                                class="btn btn-calendar btn-outline-blue-grey btn-sm  m-0 waves-effect"
                                                 disabled>06</button>
                                         </td>
                                         <td>
                                             <button type="button"
-                                                class="btn btn-outline-blue-grey btn-sm px-2 m-0 waves-effect"
+                                                class="btn btn-calendar btn-outline-blue-grey btn-sm  m-0 waves-effect"
                                                 disabled>07</button>
                                         </td>
                                     </tr>
                                     {{!-- /. Week --}}
 
                                     {{!-- Week --}}
-                                    <tr>
+                                    {{!-- <tr>
                                         <td class="custom-td" style="width:max-content">
                                             <button type="button"
                                                 class="btn btn-outline-blue-grey btn-sm m-0 px-2 waves-effect"
@@ -152,12 +156,14 @@
                                             <button type="button"
                                                 class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">14</button>
                                         </td>
-                                    </tr>
+                                    </tr> --}}
                                     {{!-- /. Week --}}
 
                                 </tbody>
                             </table>
                         </div>
+
+
 
 
 
@@ -357,7 +363,7 @@
             {{!-- Recent Activity Panel--}}
             <div class="col   p-1">
                 <div class="card  text-center mb-3 h-100">
-                    <div class="card-body">
+                    <div class="card-body ">
                         <h4 class="card-title mb-2">Activity</h4>
                         <hr class="info-color">
                         <div class="table-responsive">
@@ -414,24 +420,23 @@
 <!--Main layout-->
 
 
-{{!-- TO DO: CALENDAR MODAL ?--}}
-<!-- LOG IN MODAL -->
+{{!-- CALENDAR MODAL --}}
 <div class="modal fade" id="Log-in-modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="card-title">May 2020</h5>
+                {{!-- Add hook for calendar month --}}
+                <h5 class="card-title ">May 2020</h5>
             </div>
 
 
             <div class="modal-body mb-1">
-
+                {{!-- TO DO: Span with Buttons Here --}}
 
                 <div class="table-responsive">
-                    <table class="table table-sm border w-auto mx-auto">
-
+                    <table class="table table-sm w-auto ">
+                        {{!-- TO DO: Generate calendar script --}}
                         <thead class="text-center ">
                             <tr>
 
@@ -444,39 +449,42 @@
                                 <th scope="col">SA</th>
                             </tr>
                         </thead>
-
                         <tbody class="text-center">
+
+
                             {{!-- Week --}}
-
-                            {{!-- FIX CALENDAR BUTTON CLASS TO MAKE WIDER FOR BIG SCREEN --}}
                             <tr>
-                                <td class="custom-td" style="width:max-content">
-                                    <button type="button" class="btn btn-outline-blue-grey btn-sm m-0 px-2 waves-effect"
+                                <td>
+                                    <button type="button"
+                                        class="btn btn-calendar-modal btn-outline-blue-grey btn-sm m-0 px-2 waves-effect"
                                         disabled>01</button>
-
                                 </td>
 
                                 <td>
-                                    <button type="button" class="btn btn-outline-blue-grey btn-sm m-0 px-2 waves-effect"
+                                    <button type="button"
+                                        class="btn btn-calendar-modal btn-outline-blue-grey btn-sm m-0 px-2 waves-effect"
                                         disabled>02</button>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-info btn-sm m-0 px-2 waves-effect">03</button>
+                                    <button type="button"
+                                        class="btn btn-calendar-modal btn-info btn-sm m-0 px-2 waves-effect">03</button>
                                 </td>
                                 <td>
                                     <button type="button"
-                                        class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">04</button>
+                                        class="btn btn-calendar-modal btn-outline-info btn-sm m-0 px-2 waves-effect">04</button>
                                 </td>
                                 <td>
                                     <button type="button"
-                                        class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">05</button>
+                                        class="btn btn-calendar-modal btn-outline-info btn-sm m-0 px-2 waves-effect">05</button>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-blue-grey btn-sm px-2 m-0 waves-effect"
+                                    <button type="button"
+                                        class="btn btn-calendar-modal btn-outline-blue-grey btn-sm px-2 m-0 waves-effect"
                                         disabled>06</button>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-blue-grey btn-sm px-2 m-0 waves-effect"
+                                    <button type="button"
+                                        class="btn btn-calendar-modal btn-outline-blue-grey btn-sm px-2 m-0 waves-effect"
                                         disabled>07</button>
                                 </td>
                             </tr>
@@ -484,34 +492,38 @@
 
                             {{!-- Week --}}
                             <tr>
-                                <td class="custom-td" style="width:max-content">
-                                    <button type="button" class="btn btn-outline-blue-grey btn-sm m-0 px-2 waves-effect"
+                                <td>
+                                    <button type="button"
+                                        class="btn btn-calendar-modal btn-outline-blue-grey btn-sm m-0 px-2 waves-effect"
                                         disabled>01</button>
+                                </td>
 
+                                <td>
+                                    <button type="button"
+                                        class="btn btn-calendar-modal btn-outline-blue-grey btn-sm m-0 px-2 waves-effect"
+                                        disabled>02</button>
                                 </td>
                                 <td>
                                     <button type="button"
-                                        class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">09</button>
+                                        class="btn btn-calendar-modal btn-info btn-sm m-0 px-2 waves-effect">03</button>
                                 </td>
                                 <td>
                                     <button type="button"
-                                        class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">10</button>
+                                        class="btn btn-calendar-modal btn-outline-info btn-sm m-0 px-2 waves-effect">04</button>
                                 </td>
                                 <td>
                                     <button type="button"
-                                        class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">11</button>
+                                        class="btn btn-calendar-modal btn-outline-info btn-sm m-0 px-2 waves-effect">05</button>
                                 </td>
                                 <td>
                                     <button type="button"
-                                        class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">12</button>
+                                        class="btn btn-calendar-modal btn-outline-blue-grey btn-sm px-2 m-0 waves-effect"
+                                        disabled>06</button>
                                 </td>
                                 <td>
                                     <button type="button"
-                                        class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">13</button>
-                                </td>
-                                <td>
-                                    <button type="button"
-                                        class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">14</button>
+                                        class="btn btn-calendar-modal btn-outline-blue-grey btn-sm px-2 m-0 waves-effect"
+                                        disabled>07</button>
                                 </td>
                             </tr>
                             {{!-- /. Week --}}
@@ -522,17 +534,17 @@
                 <hr class="orange lighten-2">
 
                 <ul class="list-group list-group-flush border rounded-sm justify-content-center mb-3">
-                    <li class="list-group-item">Cras justo odio <span class="float-right"><button type="button"
-                                class="btn btn-sm orange lighten-2"><i
+                    <li class="list-group-item py-1">Cras justo odio <span class="float-right"><button type="button"
+                                class="btn btn-sm orange lighten-2 px-2"><i
                                     class="fas fa-plus fa-lg m-0 p-0"></i></button></span></li>
-                    <li class="list-group-item">Cras justo odio <span class="float-right"><button type="button"
-                                class="btn btn-sm orange lighten-2"><i
+                    <li class="list-group-item py-1">Cras justo odio <span class="float-right"><button type="button"
+                                class="btn btn-sm orange lighten-2 px-2"><i
                                     class="fas fa-plus fa-lg m-0 p-0"></i></button></span></li>
-                    <li class="list-group-item">Cras justo odio <span class="float-right "><button type="button"
-                                class="btn btn-sm orange lighten-2"><i
+                    <li class="list-group-item py-1">Cras justo odio <span class="float-right "><button type="button"
+                                class="btn btn-sm orange lighten-2 px-2"><i
                                     class="fas fa-plus fa-lg m-0 p-0"></i></button></span></li>
-                    <li class="list-group-item">Cras justo odio <span class="float-right "><button type="button"
-                                class="btn btn-sm orange lighten-2"><i
+                    <li class="list-group-item py-1">Cras justo odio <span class="float-right "><button type="button"
+                                class="btn btn-sm orange lighten-2 px-2"><i
                                     class="fas fa-plus fa-lg m-0 p-0"></i></button></span></li>
 
                 </ul>

@@ -7,7 +7,7 @@ a.active.nav-link {
   background-color: #3f51b5 !important;
 }
 
-/* Customize bootstrap containers to remove margins */
+/* Customize bootstrap containers to remove margins for fullscreen web app */
 .container.custom-container {
   padding: 0 0px;
   margin: 0;
@@ -48,10 +48,14 @@ header,
     height: 650px;
   }
 }
+
+
+
 @media (min-width: 800px) and (max-width: 850px) {
   .navbar:not(.top-nav-collapse) {
     background: #1c2331 !important;
   }
+  
 }
 /* Navbar animation */
 .navbar {
@@ -78,4 +82,61 @@ header,
 /* Footer color for sake of consistency with Navbar */
 .page-footer {
   background-color: #1c2331;
+}
+
+
+/* Calendar */
+
+.btn.btn-calendar {
+  padding-right: 1rem;
+  padding-left: 1rem;
+  
+}
+
+.btn.btn-calendar-modal {
+  padding-right: .45rem !important;
+  padding-left: .45rem !important;
+  
+}
+
+@media (min-width: 340px) and (max-width: 365px) {
+  .btn.btn-calendar-modal {
+    padding-right: .6rem !important;
+    padding-left: .6rem !important;
+    
+  }
+}
+
+@media (min-width: 365px) and (max-width: 380px) {
+  .btn.btn-calendar-modal {
+    padding-right: .7rem !important;
+    padding-left: .7rem !important;
+    
+  }
+}
+
+@media (min-width: 380px) and (max-width: 1024px) {
+  .btn.btn-calendar-modal {
+    padding-right: .9rem !important;
+    padding-left: .9rem !important;
+    
+  }
+}
+
+
+
+@media (min-width: 850px) and (max-width: 1024px) {
+  .btn.btn-calendar {
+    padding-right: .5rem;
+    padding-left: .5rem;
+    
+  }
+}
+
+@media (min-width: 700px) and (max-width: 768px) {
+  .btn.btn-calendar {
+    padding-right: .25rem;
+    padding-left: .25rem;
+    
+  }
 }
