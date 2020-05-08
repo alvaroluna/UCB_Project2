@@ -27,24 +27,242 @@
 
 
 <!--Main layout-->
-<main id="app-wrapper" class="background-image d-flex justify-content-center" style="height: 100vh;">
+<main id="app-wrapper" class="background-image d-flex justify-content-center h-mv">
     <div class="container custom-container p-1">
         {{!-- Panel Row --}}
         <div class="row row-cols-1 row-cols-md-3 mw-100 mx-auto p-2 h-100">
 
             {{!-- Available Task Panel--}}
-            <div class="col  bg-light p-1 mh-100"></div>
+            <div class="col p-1 ">
+                {{!-- Welcome Tron --}}
+                <div class="jumbotron">
+                    <h2 class="h1-responsive">Hello, Username!</h2>
+                    <hr class="my-2">
+                    <p>you have # of active quest. Open up the calendar to find more.
+                    </p>
+                    <a class="btn btn-primary btn-lg" role="button">Find Task</a>
+                </div>
+                {{!-- /. Welcome Tron --}}
+
+                {{!-- Calendar  --}}
+                {{!-- /. Calender --}}
+
+            </div>
             {{!-- /. Available Task Panel--}}
 
             {{!-- Active Task Panel--}}
-            <div class="col  bg-success p-1"></div>
+            <div class="col   my-2 p-1">
+                {{!-- Accordion Card for Generated through Javascript/Ajax , Example here for Layout testing --}}
+                <div class="accordion orange lighten-2 border rounded p-1" id="taskListAccordion">
+                    {{!-- Task --}}
+                    <h4 class="text-center mt-2">Active Task</h4>
+                    <hr class="light">
+                    <div class="card mb-1">
+                        <div class="card-header p-0 bg-info border-bottom border-dark" id="task-0-name">
+                            <a data-toggle="collapse" data-parent="#taskListAccordion" href="#task0"
+                                aria-expanded="true" aria-controls="headingTwo">
+                                <i class="fas fa-dog fa-2x p-3 mr-4 float-left black-text bg-white"
+                                    aria-hidden="true"></i>
+                                <h4 class="text-uppercase text-white mb-0 py-3 mt-1">
+                                    Task #1 Name
+                                </h4>
+                            </a>
+                        </div>
+                        <div id="task0" class="collapse" aria-labelledby="headingTwo" data-parent="#taskListAccordion">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                richardson ad
+                                squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
+                                quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
+                                on it
+                                squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
+                                helvetica,
+                                craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
+                                excepteur
+                                butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic
+                                synth
+                                nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                            <div class="card-footer ">
+                                <a id="completeTask0" class="mb-2 badge badge-pill info-color float-right "><i
+                                        class="fas fa-check fa-2x" aria-hidden="true"></i></a>
+                                <a id="startTask0" class="mb-2 badge badge-pill info-color float-left "><i
+                                        class="fas fa-play fa-2x" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- /. Task --}}
+
+                    {{!-- Task --}}
+                    <div class="card mb-1">
+                        <div class="card-header p-0 bg-info border-bottom border-dark" id="task-1-name">
+                            <a data-toggle="collapse" data-parent="#taskListAccordion" href="#task1"
+                                aria-expanded="true" aria-controls="headingTwo">
+                                <i class="fas fa-dog fa-2x p-3 mr-4 float-left black-text bg-white"
+                                    aria-hidden="true"></i>
+                                <h4 class="text-uppercase text-white mb-0 py-3 mt-1">
+                                    Task #2 Name
+                                </h4>
+                            </a>
+                        </div>
+                        <div id="task1" class="collapse" aria-labelledby="headingTwo" data-parent="#taskListAccordion">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                richardson ad
+                                squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
+                                quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
+                                on it
+                                squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
+                                helvetica,
+                                craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
+                                excepteur
+                                butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic
+                                synth
+                                nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                            <div class="card-footer ">
+                                <a id="completeTask1" class="mb-2 badge badge-pill info-color float-right "><i
+                                        class="fas fa-check fa-2x" aria-hidden="true"></i></a>
+                                <a id="startTask1" class="mb-2 badge badge-pill info-color float-left "><i
+                                        class="fas fa-play fa-2x" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- /. Task --}}
+
+                    {{!-- Task --}}
+                    <div class="card mb-1">
+                        <div class="card-header p-0 bg-info border-bottom border-dark" id="task-2-name">
+                            <a data-toggle="collapse" data-parent="#taskListAccordion" href="#task2"
+                                aria-expanded="true" aria-controls="headingTwo">
+                                <i class="fas fa-cat fa-2x p-3 mr-4 float-left black-text bg-white"
+                                    aria-hidden="true"></i>
+                                <h4 class="text-uppercase text-white mb-0 py-3 mt-1">
+                                    Task #3 Name
+                                </h4>
+                            </a>
+                        </div>
+                        <div id="task2" class="collapse" aria-labelledby="headingTwo" data-parent="#taskListAccordion">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                richardson ad
+                                squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
+                                quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
+                                on it
+                                squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
+                                helvetica,
+                                craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
+                                excepteur
+                                butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic
+                                synth
+                                nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                            <div class="card-footer ">
+                                <a id="completeTask2" class="mb-2 badge badge-pill info-color float-right "><i
+                                        class="fas fa-check fa-2x" aria-hidden="true"></i></a>
+                                <a id="startTask2" class="mb-2 badge badge-pill info-color float-left "><i
+                                        class="fas fa-play fa-2x" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- /. Task --}}
+
+                    {{!-- Task --}}
+                    <div class="card mb-1">
+                        <div class="card-header p-0 bg-info border-bottom border-dark" id="task-3-name">
+                            <a data-toggle="collapse" data-parent="#taskListAccordion" href="#task2"
+                                aria-expanded="true" aria-controls="headingTwo">
+                                <i class="fas fa-cat fa-2x p-3 mr-4 float-left black-text bg-white"
+                                    aria-hidden="true"></i>
+                                <h4 class="text-uppercase text-white mb-0 py-3 mt-1">
+                                    Task #4 Name
+                                </h4>
+                            </a>
+                        </div>
+                        <div id="task3" class="collapse" aria-labelledby="headingTwo" data-parent="#taskListAccordion">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                richardson ad
+                                squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
+                                quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
+                                on it
+                                squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
+                                helvetica,
+                                craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
+                                excepteur
+                                butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic
+                                synth
+                                nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                            <div class="card-footer ">
+                                <a id="completeTask3" class="mb-2 badge badge-pill info-color float-right "><i
+                                        class="fas fa-check fa-2x" aria-hidden="true"></i></a>
+                                <a id="startTask3" class="mb-2 badge badge-pill info-color float-left "><i
+                                        class="fas fa-play fa-2x" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- /. Task --}}
+
+
+
+                </div>
+            </div>
             {{!-- /. Active Task Panel--}}
 
             {{!-- Activity Panel--}}
-            <div class="col bg-secondary p-1"></div>
+            <div class="col  p-1">
+                <div class="card  text-center mb-3">
+                    <div class="card-body">
+                        <h4 class="card-title mb-2">Activity</h4>
+                        <hr class="info-color">
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Task Name</th>
+
+                                        <th scope="col">Date Assigned</th>
+                                        <th scope="col">Date completed</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Something...</td>
+                                        <td>10/20/2020</td>
+                                        <td>10/21/2021</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Something...</td>
+                                        <td>10/20/2020</td>
+                                        <td>10/21/2021</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Something...</td>
+                                        <td>10/20/2020</td>
+                                        <td>10/21/2021</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Something...</td>
+                                        <td>10/20/2020</td>
+                                        <td>10/21/2021</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                        <p class="card-text mt-3"><small class="text-muted">Last completed activity 3 mins ago</small>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
             {{!-- /.Activity Panel--}}
         </div>
-        {{!-- /.Panels Row --}}
+
+    </div>
+    {{!-- /.Panels Row --}}
     </div>
 
 </main>
