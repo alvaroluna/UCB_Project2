@@ -1,7 +1,6 @@
 var db = require("../models");
 
 module.exports = function(app) {
-
   app.get("/api/volunteers", function(req, res) {
     db.Volunteer.findAll({}).then(function(cb) {
       res.json(cb);
@@ -25,10 +24,12 @@ module.exports = function(app) {
   });
 
   app.put("/api/volunteers", function(req, res) {
-    db.Volunteer.update(req.body,{ where: { id: req.body.id }}).then(function(cb) {
-        res.json(cb);
-      });
-  }); 
+    db.Volunteer.update(req.body, { where: { id: req.body.id } }).then(function(
+      cb
+    ) {
+      res.json(cb);
+    });
+  });
 
   app.delete("/api/volunteers/:id", function(req, res) {
     db.Volunteer.destroy({ where: { id: req.params.id } }).then(function(cb) {
