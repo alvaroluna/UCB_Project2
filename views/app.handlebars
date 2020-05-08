@@ -30,35 +30,165 @@
 <main id="app-wrapper" class="background-image d-flex justify-content-center h-mv">
     <div class="container custom-container p-1">
         {{!-- Panel Row --}}
-        <div class="row row-cols-1 row-cols-md-3 mw-100 mx-auto p-2 h-100">
+        <div class="row row-cols-1 row-cols-md-3 mw-100 mx-auto p-2 px-md-3 ">
 
             {{!-- Available Task Panel--}}
-            <div class="col p-1 ">
+            <div class="col p-2">
                 {{!-- Welcome Tron --}}
                 <div class="jumbotron">
                     <h2 class="h1-responsive">Hello, Username!</h2>
                     <hr class="my-2">
-                    <p>you have # of active quest. Open up the calendar to find more.
+                    <p>You have # of active quest. Check out the calendar to find more.
                     </p>
-                    <a class="btn btn-primary btn-lg" role="button">Find Task</a>
+                    <a target="_blank" class="btn btn-indigo btn-lg d-block d-sm-none" data-toggle="modal"
+                        data-target="#Log-in-modal">
+                        Open Calendar
+                    </a>
                 </div>
                 {{!-- /. Welcome Tron --}}
 
+                {{!--  --}}
+
+                {{!--  --}}
+
                 {{!-- Calendar  --}}
+                <div class="card d-none d-sm-block bg-info">
+                    <div class="card-body white">
+                        {{!-- <h5 class="card-title">May 2020<span class="float-right"><a class="mr-2" href=""><i
+                                        class="fas fa-arrow-left "></i></a><a href=""><i
+                                        class="fas fa-arrow-right "></i></a></span></h5> --}}
+
+                        <h5 class="card-title">May 2020<span class="float-right">
+                                {{!-- Arrow Buttons --}}
+                                <span class="badge badge-pill orange mr-2"><a href=""><i
+                                            class="fas fa-angle-left  white-text"></i></a></span>
+                                <span class="badge badge-pill orange"><a href=""><i
+                                            class="fas fa-angle-right white-text"></i></a></span>
+
+                            </span></h5>
+
+
+                        <table class="table table-sm border">
+                            <thead class="text-center ">
+                                <tr>
+
+                                    <th scope="col">SUN</th>
+                                    <th scope="col">MON</th>
+                                    <th scope="col">TUE</th>
+                                    <th scope="col">WED</th>
+                                    <th scope="col">THU</th>
+                                    <th scope="col">FRI</th>
+                                    <th scope="col">SAT</th>
+                                </tr>
+                            </thead>
+
+                            <tbody class="text-center">
+                                {{!-- Week --}}
+                                <tr>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-blue-grey btn-sm m-0 waves-effect"
+                                            disabled>01</button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-blue-grey btn-sm m-0 waves-effect"
+                                            disabled>02</button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-info btn-sm m-0 waves-effect">03</button>
+                                    </td>
+                                    <td>
+                                        <button type="button"
+                                            class="btn btn-outline-info btn-sm m-0 waves-effect">04</button>
+                                    </td>
+                                    <td>
+                                        <button type="button"
+                                            class="btn btn-outline-info btn-sm m-0 waves-effect">05</button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-blue-grey btn-sm m-0 waves-effect"
+                                            disabled>06</button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-blue-grey btn-sm m-0 waves-effect"
+                                            disabled>07</button>
+                                    </td>
+                                </tr>
+                                {{!-- /. Week --}}
+
+                                {{!-- Week --}}
+                                <tr>
+                                    <td>
+                                        <button type="button"
+                                            class="btn btn-outline-info btn-sm m-0 waves-effect">08</button>
+                                    </td>
+                                    <td>
+                                        <button type="button"
+                                            class="btn btn-outline-info btn-sm m-0 waves-effect">09</button>
+                                    </td>
+                                    <td>
+                                        <button type="button"
+                                            class="btn btn-outline-info btn-sm m-0 waves-effect">10</button>
+                                    </td>
+                                    <td>
+                                        <button type="button"
+                                            class="btn btn-outline-info btn-sm m-0 waves-effect">11</button>
+                                    </td>
+                                    <td>
+                                        <button type="button"
+                                            class="btn btn-outline-info btn-sm m-0 waves-effect">12</button>
+                                    </td>
+                                    <td>
+                                        <button type="button"
+                                            class="btn btn-outline-info btn-sm m-0 waves-effect">13</button>
+                                    </td>
+                                    <td>
+                                        <button type="button"
+                                            class="btn btn-outline-info btn-sm m-0 waves-effect">14</button>
+                                    </td>
+                                </tr>
+                                {{!-- /. Week --}}
+
+                            </tbody>
+                        </table>
+
+                        <hr class="orange lighten-2">
+
+
+
+                        <ul class="list-group list-group-flush border rounded-sm justify-content-center mb-3">
+                            <li class="list-group-item">Cras justo odio <span class="float-right mr-2"><button
+                                        type="button" class="btn btn-sm orange lighten-2"><i
+                                            class="fas fa-plus fa-lg m-0 p-0"></i></button></span></li>
+                            <li class="list-group-item">Cras justo odio <span class="float-right mr-2"><button
+                                        type="button" class="btn btn-sm orange lighten-2"><i
+                                            class="fas fa-plus fa-lg m-0 p-0"></i></button></span></li>
+                            <li class="list-group-item">Cras justo odio <span class="float-right mr-2"><button
+                                        type="button" class="btn btn-sm orange lighten-2"><i
+                                            class="fas fa-plus fa-lg m-0 p-0"></i></button></span></li>
+                            <li class="list-group-item">Cras justo odio <span class="float-right mr-2"><button
+                                        type="button" class="btn btn-sm orange lighten-2"><i
+                                            class="fas fa-plus fa-lg m-0 p-0"></i></button></span></li>
+
+                        </ul>
+
+
+
+                    </div>
+                </div>
                 {{!-- /. Calender --}}
 
             </div>
             {{!-- /. Available Task Panel--}}
 
             {{!-- Active Task Panel--}}
-            <div class="col   my-2 p-1">
+            <div class="col   my-2 p-1 ">
                 {{!-- Accordion Card for Generated through Javascript/Ajax , Example here for Layout testing --}}
-                <div class="accordion orange lighten-2 border rounded p-1" id="taskListAccordion">
+                <div class="accordion orange lighten-2 border rounded p-1 h-100" id="taskListAccordion">
                     {{!-- Task --}}
                     <h4 class="text-center mt-2">Active Task</h4>
                     <hr class="light">
                     <div class="card mb-1">
-                        <div class="card-header p-0 bg-info border-bottom border-dark" id="task-0-name">
+                        <div class="card-header p-0 bg-info border-bottom " id="task-0-name">
                             <a data-toggle="collapse" data-parent="#taskListAccordion" href="#task0"
                                 aria-expanded="true" aria-controls="headingTwo">
                                 <i class="fas fa-dog fa-2x p-3 mr-4 float-left black-text bg-white"
@@ -95,7 +225,7 @@
 
                     {{!-- Task --}}
                     <div class="card mb-1">
-                        <div class="card-header p-0 bg-info border-bottom border-dark" id="task-1-name">
+                        <div class="card-header p-0 bg-info border-bottom " id="task-1-name">
                             <a data-toggle="collapse" data-parent="#taskListAccordion" href="#task1"
                                 aria-expanded="true" aria-controls="headingTwo">
                                 <i class="fas fa-dog fa-2x p-3 mr-4 float-left black-text bg-white"
@@ -132,7 +262,7 @@
 
                     {{!-- Task --}}
                     <div class="card mb-1">
-                        <div class="card-header p-0 bg-info border-bottom border-dark" id="task-2-name">
+                        <div class="card-header p-0 bg-info border-bottom " id="task-2-name">
                             <a data-toggle="collapse" data-parent="#taskListAccordion" href="#task2"
                                 aria-expanded="true" aria-controls="headingTwo">
                                 <i class="fas fa-cat fa-2x p-3 mr-4 float-left black-text bg-white"
@@ -169,8 +299,8 @@
 
                     {{!-- Task --}}
                     <div class="card mb-1">
-                        <div class="card-header p-0 bg-info border-bottom border-dark" id="task-3-name">
-                            <a data-toggle="collapse" data-parent="#taskListAccordion" href="#task2"
+                        <div class="card-header p-0 bg-info border-bottom" id="task-3-name">
+                            <a data-toggle="collapse" data-parent="#taskListAccordion" href="#task3"
                                 aria-expanded="true" aria-controls="headingTwo">
                                 <i class="fas fa-cat fa-2x p-3 mr-4 float-left black-text bg-white"
                                     aria-hidden="true"></i>
@@ -210,9 +340,9 @@
             </div>
             {{!-- /. Active Task Panel--}}
 
-            {{!-- Activity Panel--}}
+            {{!-- Recent Activity Panel--}}
             <div class="col  p-1">
-                <div class="card  text-center mb-3">
+                <div class="card  text-center mb-3 h-100">
                     <div class="card-body">
                         <h4 class="card-title mb-2">Activity</h4>
                         <hr class="info-color">
@@ -258,7 +388,7 @@
                 </div>
 
             </div>
-            {{!-- /.Activity Panel--}}
+            {{!-- /. Recent Activity Panel--}}
         </div>
 
     </div>
@@ -270,49 +400,132 @@
 <!--Main layout-->
 
 
-{{!-- TO DO: MODAL ?--}}
+{{!-- TO DO: CALENDAR MODAL ?--}}
 <!-- LOG IN MODAL -->
-<div class="modal fade" id="test-modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="Log-in-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
 
             <div class="modal-header">
-                <ul class="nav  nav-pills  " id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active " data-toggle="tab" href="#log-in-panel" role="tab"><i
-                                class="fas fa-user mr-1"></i>
-                            Login</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link " data-toggle="tab" href="#register-panel" role="tab"><i
-                                class="fas fa-user-plus mr-1"></i>
-                            Register</a>
-                    </li>
-                </ul>
+                <h5 class="card-title">May 2020</h5>
             </div>
 
 
             <div class="modal-body mb-1">
-                <div class="md-form form-sm mb-5">
-                    <i class="fas fa-envelope prefix"></i>
-                    <input type="email" id="modalLRInput10" class="form-control form-control-sm validate">
-                    <label data-error="wrong" data-success="right" for="modalLRInput10">Your email</label>
+
+
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead class="text-center ">
+                            <tr>
+
+                                <th scope="col">SUN</th>
+                                <th scope="col">MON</th>
+                                <th scope="col">TUE</th>
+                                <th scope="col">WED</th>
+                                <th scope="col">THU</th>
+                                <th scope="col">FRI</th>
+                                <th scope="col">SAT</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="text-center">
+                            {{!-- Week --}}
+                            <tr>
+                                <td>
+                                    <button type="button" class="btn btn-outline-blue-grey btn-sm m-0 waves-effect"
+                                        disabled>01</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-blue-grey btn-sm m-0 waves-effect"
+                                        disabled>02</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-info btn-sm m-0 waves-effect">03</button>
+                                </td>
+                                <td>
+                                    <button type="button"
+                                        class="btn btn-outline-info btn-sm m-0 waves-effect">04</button>
+                                </td>
+                                <td>
+                                    <button type="button"
+                                        class="btn btn-outline-info btn-sm m-0 waves-effect">05</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-blue-grey btn-sm m-0 waves-effect"
+                                        disabled>06</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-blue-grey btn-sm m-0 waves-effect"
+                                        disabled>07</button>
+                                </td>
+                            </tr>
+                            {{!-- /. Week --}}
+
+                            {{!-- Week --}}
+                            <tr>
+                                <td>
+                                    <button type="button"
+                                        class="btn btn-outline-info btn-sm m-0 waves-effect">08</button>
+                                </td>
+                                <td>
+                                    <button type="button"
+                                        class="btn btn-outline-info btn-sm m-0 waves-effect">09</button>
+                                </td>
+                                <td>
+                                    <button type="button"
+                                        class="btn btn-outline-info btn-sm m-0 waves-effect">10</button>
+                                </td>
+                                <td>
+                                    <button type="button"
+                                        class="btn btn-outline-info btn-sm m-0 waves-effect">11</button>
+                                </td>
+                                <td>
+                                    <button type="button"
+                                        class="btn btn-outline-info btn-sm m-0 waves-effect">12</button>
+                                </td>
+                                <td>
+                                    <button type="button"
+                                        class="btn btn-outline-info btn-sm m-0 waves-effect">13</button>
+                                </td>
+                                <td>
+                                    <button type="button"
+                                        class="btn btn-outline-info btn-sm m-0 waves-effect">14</button>
+                                </td>
+                            </tr>
+                            {{!-- /. Week --}}
+
+                        </tbody>
+                    </table>
                 </div>
 
-                <div class="md-form form-sm mb-4">
-                    <i class="fas fa-lock prefix"></i>
-                    <input type="password" id="modalLRInput11" class="form-control form-control-sm validate">
-                    <label data-error="wrong" data-success="right" for="modalLRInput11">Your password</label>
-                </div>
-                <div class="text-center mt-2">
-                    <button id="login-button" class="btn btn-indigo">Log in <i class="fas fa-sign-in ml-1"></i></button>
-                </div>
+
+
+
+                <hr class="orange lighten-2">
+
+
+
+                <ul class="list-group list-group-flush border rounded-sm justify-content-center mb-3">
+                    <li class="list-group-item">Cras justo odio <span class="float-right"><button type="button"
+                                class="btn btn-sm orange lighten-2"><i
+                                    class="fas fa-plus fa-lg m-0 p-0"></i></button></span></li>
+                    <li class="list-group-item">Cras justo odio <span class="float-right"><button type="button"
+                                class="btn btn-sm orange lighten-2"><i
+                                    class="fas fa-plus fa-lg m-0 p-0"></i></button></span></li>
+                    <li class="list-group-item">Cras justo odio <span class="float-right "><button type="button"
+                                class="btn btn-sm orange lighten-2"><i
+                                    class="fas fa-plus fa-lg m-0 p-0"></i></button></span></li>
+                    <li class="list-group-item">Cras justo odio <span class="float-right "><button type="button"
+                                class="btn btn-sm orange lighten-2"><i
+                                    class="fas fa-plus fa-lg m-0 p-0"></i></button></span></li>
+
+                </ul>
             </div>
             <!--Footer-->
             <div class="modal-footer">
-
-                <button type="button" class="btn btn-outline-indigo waves-effect ml-auto"
+                <button type="button" class="btn btn-sm btn-outline-indigo waves-effect ml-auto"
                     data-dismiss="modal">Close</button>
             </div>
         </div>
