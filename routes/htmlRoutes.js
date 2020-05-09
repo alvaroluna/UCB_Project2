@@ -15,17 +15,6 @@ module.exports = function (app) {
     });
   });
 
-  ////////////////////////////
-  // TEST Load App page     //
-  ////////////////////////////
-  app.get("/app", function (req, res) {
-    db.Example.findAll({}).then(function (dbExamples) {
-      res.render("app", {
-        examples: dbExamples
-      });
-    });
-  });
-
   ////////////////////////////////////////////////////
   // Load example page and pass in an example by id //
   ////////////////////////////////////////////////////
@@ -54,17 +43,18 @@ module.exports = function (app) {
   //////////////////////////////
   // Load main volunteer page //
   //////////////////////////////
-  // app.get("/app/:id", function (req, res) {
-  //   db.Example.findOne({
-  //     where: {
-  //       id: req.params.id
-  //     }
-  //   }).then(function (dbExample) {
-  //     res.render("app", {
-  //       example: dbExample
-  //     });
-  //   });
-  // });
+  app.get("/app/:id", function (req, res) {
+
+    db.Volunteer.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (dbVolunteer) {
+      res.render("app", {
+        volunteer: dbVolunteer
+      });
+    });
+  });
 
   //////////////////////////////////////////////
   // Render 404 page for any unmatched routes //
