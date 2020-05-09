@@ -11,24 +11,22 @@ const createMap = ({ lat, lng }) => {
   });
 };
 
-/**
- * Create google maps Marker instance.
- * @param {Object} mapObj
- * @param {Object} position
- * @return {Object}
- */
-const createMarker = ({ mapObj, position }) => {
-  return new google.maps.Marker({ mapObj, position });
-};
+function CurrentLocation(mapObj) {
+  if (navigator.geolocation) {
+    return navigator.geolocation.getCurrentPosition(
+      function (position) {
 
-// custom dog icon at geolocation
-// const createMarker = function (mapObj, initialPosition) {
-//   return new google.maps.Marker({
-//     map: mapObj,
-//     position: initialPosition,
-//     icon: '../images/shibaMapIcon2_smaller.png'
-//   })
-// }
+        // get current location - runs once
+        var currentPos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+      },
+      function () {
+        handleLocationError(true, infoWindow, mapObj.getCenter());
+      });
+  }
+};
 
 const trackLocation = ({ onSuccess, onError = () => { } }) => {
   if ('geolocation' in navigator === false) {
@@ -65,16 +63,28 @@ const getPositionErrorMessage = code => {
 // invoked by src as callback in handlebars file //
 ///////////////////////////////////////////////////
 function initMap() {
-  const initialPosition = { lat: 59.32, lng: 17.84 };
-  const mapObj = createMap(initialPosition);
-  const dogMarker = createMarker({ mapObj, position: initialPosition });
+  const mapObj = createMap({ lat: 20, lng: 20 });
+  const currentPos = CurrentLocation(mapObj)
   const $info = document.getElementById('info');
+  mapObj.setCenter(currentPos);
 
+  // custom dog icon at geolocation
+  var dogMarker = new google.maps.Marker({
+    map: mapObj,
+    position: currentPos,
+    icon: '../images/shibaMapIcon2_smaller.png'
+  })
+
+  // location for locations to create walking path
   var locationList = [];
+
+
   ///////////////////////////////
   // START, STOP EVENT HANDLER //
   ///////////////////////////////
   $(function () {
+
+
     // jQuery start walk
     $("#startWalk").on("click", function (event) {
       console.log("Start Walk!")
@@ -99,17 +109,16 @@ function initMap() {
           $info.classList.add('error');
         }
 
-      }); // end
+      }) // end
 
       // jQuery end walk
       $("#endWalk").on("click", function (event) {
         console.log("End Walk!")
-
-        // SHOW CURRENT STATIC LOCATION
-
-
         locationList = []
         console.log(locationList)
+
+
+
       }); // end
 
 
@@ -123,5 +132,4 @@ function initMap() {
 
   console.log(locationList)
 }
-
 
