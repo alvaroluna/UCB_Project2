@@ -17,18 +17,18 @@ const createMap = ({ lat, lng }) => {
  * @param {Object} position
  * @return {Object}
  */
-// const createMarker = ({ mapObj, position }) => {
-//   return new google.maps.Marker({ mapObj, position });
-// };
+const createMarker = ({ mapObj, position }) => {
+  return new google.maps.Marker({ mapObj, position });
+};
 
 // custom dog icon at geolocation
-const createMarker = function (mapObj, initialPosition) {
-  return new google.maps.Marker({
-    map: mapObj,
-    position: initialPosition,
-    icon: '../images/shibaMapIcon2_smaller.png'
-  })
-}
+// const createMarker = function (mapObj, initialPosition) {
+//   return new google.maps.Marker({
+//     map: mapObj,
+//     position: initialPosition,
+//     icon: '../images/shibaMapIcon2_smaller.png'
+//   })
+// }
 
 const trackLocation = ({ onSuccess, onError = () => { } }) => {
   if ('geolocation' in navigator === false) {
