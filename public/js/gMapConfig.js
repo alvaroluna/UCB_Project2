@@ -30,17 +30,15 @@ function initMap() {
 
         // this is an info window but don't really want it
         // infoWindow.setPosition(currentPos);
-        // infoWindow.setContent("Location found.");
+        // infoWindow.setContent("Woof woof.");
         // infoWindow.open(map);
         map.setCenter(currentPos);
 
         // custom dog icon at geolocation
-        var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
         var marker = new google.maps.Marker({
           map: map,
           position: currentPos,
-          // icon: iconBase + 'parking_lot_maps.png'
-          icon: '../images/shibaMapIcon_smaller.png'
+          icon: '../images/shibaMapIcon2_smaller.png'
         })
 
       },
