@@ -1,6 +1,4 @@
 <div class="container">
-
-
     {{!--                    --}}
     {{!-- google maps window --}}
     {{!--                    --}}
@@ -8,11 +6,12 @@
     <div class="row">
         <div class="col-md-12">
             <div id="map"></div>
+            <p id="info" class="info"></p>
 
             {{!-- AIzaSyAlo05wNKIX0KloedL8b3ux0RTS77YmOAA - alvaroAPI key --}}
-            <script
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlo05wNKIX0KloedL8b3ux0RTS77YmOAA&callback=initMap"
-                async defer></script>
+            {{!-- function initMap() is called directly from src --}}
+            <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlo05wNKIX0KloedL8b3ux0RTS77YmOAA&callback=initMap"></script>
         </div>
     </div>
 
@@ -22,29 +21,8 @@
     <div class="row">
         <div class="col-md-12">
             <button><a href="/">← Back To Home</a></button>
-            <button>Start Walk</button>
-            <button>Stop Walk</button>
+            <button id="startWalk">Start Walk</button>
+            <button id="endWalk">End Walk</button>
         </div>
     </div>
-
-    <div class="row">
-        <div style="overflow:hidden;">
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-md-8">
-                        <div id="datetimepicker12"></div>
-                    </div>
-                </div>
-            </div>
-            <script type="text/javascript">
-                $(function () {
-                    $('#datetimepicker12').datetimepicker({
-                        inline: true,
-                        sideBySide: true
-                    });
-                });
-            </script>
-        </div>
-    </div>
-
 </div>

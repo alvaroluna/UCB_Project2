@@ -54,17 +54,18 @@ module.exports = function(app) {
   //////////////////////////////
   // Load main volunteer page //
   //////////////////////////////
-  // app.get("/app/:id", function (req, res) {
-  //   db.Example.findOne({
-  //     where: {
-  //       id: req.params.id
-  //     }
-  //   }).then(function (dbExample) {
-  //     res.render("app", {
-  //       example: dbExample
-  //     });
-  //   });
-  // });
+  app.get("/app/:id", function (req, res) {
+
+    db.Volunteer.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (dbVolunteer) {
+      res.render("app", {
+        volunteer: dbVolunteer
+      });
+    });
+  });
 
   //////////////////////////////////////////////
   // Render 404 page for any unmatched routes //

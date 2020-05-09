@@ -1,8 +1,138 @@
-// // Get references to page elements
-// var $exampleText = $("#example-text");
-// var $exampleDescription = $("#example-description");
-// var $submitBtn = $("#submit");
-// var $exampleList = $("#example-list");
+//#region HTML Elements
+
+//Index Page
+
+// TO DO: Get log in and register buttons
+var $registerBtn = $("#register-button");
+var $logInBtn = $("#login-button");
+
+
+// TO DO: Get log in User name and password input elements
+// TO DO: Get Registration input elements 
+
+
+
+
+
+//#endregion
+
+//#region Global Variables
+//#endregion
+
+//#region Objects
+var API = {
+
+    //#region Volunteer APIs
+    //Create New Voluneteer
+    createVolunteer: function (data) {
+        return $.ajax({
+            headers: {
+                "Content-Type": "application/json"
+            },
+            type: "POST",
+            url: "/api/volunteers",
+            data: JSON.stringify(data)
+        });
+    },
+    //Get Volunteer Info
+    getVolunteerInfo: function () {
+        return $.ajax({
+            url: "api/volunteer/",
+            type: "GET"
+        });
+    },
+    //Update Volunteer Info
+    updateVolunteerInfo: function () {
+        return $.ajax({
+            headers: {
+                "Content-Type": "application/json"
+            },
+            type: "PUT",
+            url: "/api/volunteers",
+            data: JSON.stringify(data)
+        });
+    },
+    //Delete Volunteer
+    deleteExample: function (id) {
+        return $.ajax({
+            url: "api/volunteers/" + id,
+            type: "DELETE"
+        });
+    },
+    //Authenticate Volunteer
+    authenticate: function (user) {
+        return $.ajax({
+            url: "api/authenticate/" + user.email + "/" + user.password,
+            type: "GET"
+        });
+    }
+
+    //#endregion
+
+    //#region Task APIs
+
+    //#endregion
+
+}
+//#endregion
+
+//#region Functions
+function handleRegister(event) {
+    event.preventDefault(); event.preventDefault();
+    console.log("Register Clicked");
+
+    var data = {
+        //Get New User Data
+        firstName: $("#new-first-name").val().trim(),
+        lastName: $("#new-last-name").val().trim(),
+        dlNum: $("#new-dl-num").val().trim(),
+        dlState: $("#new-dl-state").val().trim(),
+        dob: $("#new-dob").val().trim(),
+        streetAddress: $("#new-address").val().trim(),
+        city: $("#new-city").val().trim(),
+        state: $("#new-state").val().trim(),
+        email: $("#new-email").val().trim(),
+        phoneNum: $("#new-phone").val().trim(),
+        password: $("#new-password").val().trim()
+    };
+
+    //Validate new password
+    var passwordValidate = $("#new-password-val").val().trim();
+    if (data.password != passwordValidate) {
+        alert("Passwords must match try again")
+        $("#new-password").val(null);
+        $("#new-password-val").val(null);
+        return;
+    }
+    //Validate all required fields entered
+    if (!(data.firstName && data.lastName && data.email)) {
+        alert("First name, last name, and email is required");
+        return;
+    }
+
+    API.createVolunteer(data).then(function (result) {
+        //Load next page with volunteer info
+        var url = window.location.href + "app/" + result.id;
+        window.location.assign(url);
+    })
+}
+function handleLogIn(event) {
+
+    event.preventDefault();
+}
+//#endregion
+
+
+
+//#region Event Handlers
+$(document).ready(function () {
+    //Register
+    $registerBtn.on("click", handleRegister);
+
+    //Log In
+    $logInBtn.on("click", handleLogIn);
+});
+//#endregion
 
 // // The API object contains methods for each kind of request we'll make
 // var API = {
