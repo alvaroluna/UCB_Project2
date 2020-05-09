@@ -7,7 +7,7 @@
 const createMap = ({ lat, lng }) => {
   return new google.maps.Map(document.getElementById('map'), {
     center: { lat, lng },
-    zoom: 15
+    zoom: 20
   });
 };
 
@@ -92,14 +92,20 @@ function initMap() {
   });
 
 
-
+  locationList = [];
 
   let watchId = trackLocation({
     onSuccess: ({ coords: { latitude: lat, longitude: lng } }) => {
       dogMarker.setPosition({ lat, lng });
       mapObj.panTo({ lat, lng });
+
+      // write coordinates to the dom
       $info.textContent = `Lat: ${lat.toFixed(5)} Lng: ${lng.toFixed(5)}`;
       $info.classList.remove('error');
+
+      // console.log((lat, lng))
+      locationList.push({ lat, lng });
+      console.log(locationList)
     },
     onError: err => {
       console.log($info);
@@ -107,6 +113,9 @@ function initMap() {
       $info.classList.add('error');
     }
   });
+
+
+  console.log(locationList)
 }
 
 
