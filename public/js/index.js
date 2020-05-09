@@ -112,12 +112,12 @@ function handleRegister(event) {
 
     API.createVolunteer(data).then(function (result) {
         //Load next page with volunteer info
-
-        console.log(result);
+        var url = window.location.href + "app/" + result.id;
+        window.location.assign(url);
     })
 }
 function handleLogIn(event) {
-    console.log("Hello")
+
     event.preventDefault();
 }
 //#endregion
