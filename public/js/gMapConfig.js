@@ -1,60 +1,112 @@
-// Note: This example requires that you consent to location sharing when
-// prompted by your browser. If you see the error "The Geolocation service
-// failed.", it means you probably did not give permission for the browser to
-// locate you.
-var map, infoWindow;
+/**
+ * Create google maps Map instance.
+ * @param {number} lat
+ * @param {number} lng
+ * @return {Object}
+ */
+const createMap = ({ lat, lng }) => {
+  return new google.maps.Map(document.getElementById('map'), {
+    center: { lat, lng },
+    zoom: 15
+  });
+};
 
-// initMap() is called by src callback in handlebars file
-function initMap() {
-  // Try HTML5 geolocation. - WHERE IS THE NAVIGATOR OBJECT COMING FROM???
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      function (position) {
+/**
+ * Create google maps Marker instance.
+ * @param {Object} mapObj
+ * @param {Object} position
+ * @return {Object}
+ */
+// const createMarker = ({ mapObj, position }) => {
+//   return new google.maps.Marker({ mapObj, position });
+// };
 
-        // get current location
-        var currentPos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-
-
-        //////////////////////////////////////////////////////////// THIS CAN BE ABOVE 
-        // map loads slow
-        map = new google.maps.Map(document.getElementById("map"), {
-          center: currentPos,
-          zoom: 20
-        });
-        infoWindow = new google.maps.InfoWindow();
-        //////////////////////////////////////////////////////////// THIS CAN BE ABOVE IF
+// custom dog icon at geolocation
+const createMarker = function (mapObj, initialPosition) {
+  return new google.maps.Marker({
+    map: mapObj,
+    position: initialPosition,
+    icon: '../images/shibaMapIcon2_smaller.png'
+  })
+}
 
 
-        // this is an info window but don't really want it
-        // infoWindow.setPosition(currentPos);
-        // infoWindow.setContent("Woof woof.");
-        // infoWindow.open(map);
-        map.setCenter(currentPos);
 
-        // custom dog icon at geolocation
-        var marker = new google.maps.Marker({
-          map: map,
-          position: currentPos,
-          icon: '../images/shibaMapIcon2_smaller.png'
-        })
+const trackLocation = ({ onSuccess, onError = () => { } }) => {
+  if ('geolocation' in navigator === false) {
+    return onError(new Error('Geolocation is not supported by your browser.'));
+  }
 
-      },
-      function () {
-        handleLocationError(true, infoWindow, map.getCenter());
-      });
-  } else {
-    // Browser doesn't support Geolocation
-    handleLocationError(false, infoWindow, map.getCenter());
+  return navigator.geolocation.watchPosition(onSuccess, onError, {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  });
+};
+
+/**
+ * Get position error message from the given error code.
+ * @param {number} code
+ * @return {String}
+ */
+const getPositionErrorMessage = code => {
+  switch (code) {
+    case 1:
+      return 'Permission denied.';
+    case 2:
+      return 'Position unavailable.';
+    case 3:
+      return 'Timeout reached.';
   }
 }
 
-function handleLocationError(browserHasGeolocation, infoWindow, currentPos) {
-  infoWindow.setPosition(currentPos);
-  infoWindow.setContent(browserHasGeolocation ?
-    'Error: The Geolocation service failed.' :
-    'Error: Your browser doesn\'t support geolocation.');
-  infoWindow.open(map);
+
+
+///////////////////////////////////////////////////
+// PROGRAM ENTRY POINT                           //
+// invoked by src as callback in handlebars file //
+///////////////////////////////////////////////////
+function initMap() {
+  const initialPosition = { lat: 59.32, lng: 17.84 };
+  const mapObj = createMap(initialPosition);
+  const dogMarker = createMarker({ mapObj, position: initialPosition });
+  const $info = document.getElementById('info');
+
+
+
+
+
+  ///////////////////////////////
+  // START, STOP EVENT HANDLER //
+  ///////////////////////////////
+  $(function () {
+    // jQuery start walk
+    $("#startWalk").on("click", function (event) {
+      console.log("Start Walk!")
+    }); // end
+
+    // jQuery end walk
+    $("#endWalk").on("click", function (event) {
+      console.log("End Walk!")
+    }); // end
+  });
+
+
+
+
+  let watchId = trackLocation({
+    onSuccess: ({ coords: { latitude: lat, longitude: lng } }) => {
+      dogMarker.setPosition({ lat, lng });
+      mapObj.panTo({ lat, lng });
+      $info.textContent = `Lat: ${lat.toFixed(5)} Lng: ${lng.toFixed(5)}`;
+      $info.classList.remove('error');
+    },
+    onError: err => {
+      console.log($info);
+      $info.textContent = `Error: ${err.message || getPositionErrorMessage(err.code)}`;
+      $info.classList.add('error');
+    }
+  });
 }
+
+
