@@ -30,8 +30,6 @@ const createMarker = function (mapObj, initialPosition) {
   })
 }
 
-
-
 const trackLocation = ({ onSuccess, onError = () => { } }) => {
   if ('geolocation' in navigator === false) {
     return onError(new Error('Geolocation is not supported by your browser.'));
@@ -72,10 +70,7 @@ function initMap() {
   const dogMarker = createMarker({ mapObj, position: initialPosition });
   const $info = document.getElementById('info');
 
-
-
-
-
+  var locationList = [];
   ///////////////////////////////
   // START, STOP EVENT HANDLER //
   ///////////////////////////////
@@ -83,35 +78,46 @@ function initMap() {
     // jQuery start walk
     $("#startWalk").on("click", function (event) {
       console.log("Start Walk!")
-    }); // end
 
-    // jQuery end walk
-    $("#endWalk").on("click", function (event) {
-      console.log("End Walk!")
-    }); // end
-  });
+      let watchId = trackLocation({
+        onSuccess: ({ coords: { latitude: lat, longitude: lng } }) => {
+          dogMarker.setPosition({ lat, lng });
+          mapObj.panTo({ lat, lng });
+
+          // write coordinates to the dom
+          $info.textContent = `Lat: ${lat.toFixed(5)} Lng: ${lng.toFixed(5)}`;
+          $info.classList.remove('error');
+
+          // console.log((lat, lng))
+          locationList.push({ lat, lng });
+          console.log(locationList)
+
+        },
+        onError: err => {
+          console.log($info);
+          $info.textContent = `Error: ${err.message || getPositionErrorMessage(err.code)}`;
+          $info.classList.add('error');
+        }
+
+      }); // end
+
+      // jQuery end walk
+      $("#endWalk").on("click", function (event) {
+        console.log("End Walk!")
+
+        // SHOW CURRENT STATIC LOCATION
 
 
-  locationList = [];
+        locationList = []
+        console.log(locationList)
+      }); // end
 
-  let watchId = trackLocation({
-    onSuccess: ({ coords: { latitude: lat, longitude: lng } }) => {
-      dogMarker.setPosition({ lat, lng });
-      mapObj.panTo({ lat, lng });
 
-      // write coordinates to the dom
-      $info.textContent = `Lat: ${lat.toFixed(5)} Lng: ${lng.toFixed(5)}`;
-      $info.classList.remove('error');
 
-      // console.log((lat, lng))
-      locationList.push({ lat, lng });
-      console.log(locationList)
-    },
-    onError: err => {
-      console.log($info);
-      $info.textContent = `Error: ${err.message || getPositionErrorMessage(err.code)}`;
-      $info.classList.add('error');
-    }
+
+    });
+
+
   });
 
 
