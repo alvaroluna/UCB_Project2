@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 
 var request;
 
-describe("GET /api/volunteers", function() {
+describe("POST /api/volunteers", function() {
   // Before each test begins, create a new request server for testing
   // & delete all examples from the db
   beforeEach(function() {
@@ -17,14 +17,25 @@ describe("GET /api/volunteers", function() {
     return db.sequelize.sync({ force: true });
   });
 
-  it("should find all examples", function(done) {
-    // Add some examples to the db to test with
-    db.Volunteer.bulkCreate([
-      { text: "First Example", description: "First Description" },
-      { text: "Second Example", description: "Second Description" }
-    ]).then(function() {
-      // Request the route that returns all examples
-      request.get("/api/volunteers").end(function(err, res) {
+  it("should save an example", function(done) {
+    // Create an object to send to the endpoint
+    var reqBody = {
+      name: "testing 1",
+      age: 1,
+      address: "testing 1",
+      city: "testing 1",
+      state: "testing 1",
+      dlNum: "testing 1",
+      dlState: "testing 1",
+      phoneNum: "testing 1",
+      gender: "testing 1"
+    };
+
+    // POST the request body to the server
+    request
+      .post("/api/volunteers")
+      .send(reqBody)
+      .end(function(err, res) {
         var responseStatus = res.status;
         var responseBody = res.body;
 
@@ -35,20 +46,11 @@ describe("GET /api/volunteers", function() {
         expect(responseStatus).to.equal(200);
 
         expect(responseBody)
-          .to.be.an("array")
-          .that.has.lengthOf(2);
-
-        expect(responseBody[0])
           .to.be.an("object")
-          .that.includes({ text: "First Example", description: "First Description" });
-
-        expect(responseBody[1])
-          .to.be.an("object")
-          .that.includes({ text: "Second Example", description: "Second Description" });
+          .that.includes(reqBody);
 
         // The `done` function is used to end any asynchronous tests
         done();
       });
-    });
   });
 });
