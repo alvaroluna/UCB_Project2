@@ -18,10 +18,11 @@ function initMap() {
         };
 
 
-        //////////////////////////////////////////////////////////// THIS CAN BE ABOVE IF
+        //////////////////////////////////////////////////////////// THIS CAN BE ABOVE 
+        // map loads slow
         map = new google.maps.Map(document.getElementById("map"), {
           center: currentPos,
-          zoom: 15
+          zoom: 20
         });
         infoWindow = new google.maps.InfoWindow();
         //////////////////////////////////////////////////////////// THIS CAN BE ABOVE IF
@@ -30,8 +31,7 @@ function initMap() {
         // this is an info window but don't really want it
         // infoWindow.setPosition(currentPos);
         // infoWindow.setContent("Location found.");
-
-        infoWindow.open(map);
+        // infoWindow.open(map);
         map.setCenter(currentPos);
 
         // custom dog icon at geolocation
@@ -39,7 +39,8 @@ function initMap() {
         var marker = new google.maps.Marker({
           map: map,
           position: currentPos,
-          icon: iconBase + 'parking_lot_maps.png'
+          // icon: iconBase + 'parking_lot_maps.png'
+          icon: '../images/shibaMapIcon_smaller.png'
         })
 
       },
