@@ -1,34 +1,26 @@
-/**
- * Create google maps Map instance.
- * @param {number} lat
- * @param {number} lng
- * @return {Object}
- */
-const createMap = ({ lat, lng }) => {
-  return new google.maps.Map(document.getElementById('map'), {
-    center: { lat, lng },
+function CreateMap() {
+  return new google.maps.Map(document.getElementById("map"), {
+    center: { lat: 37.7749, lng: 122.4194 },
     zoom: 20
   });
 };
 
-/**
- * Create google maps Marker instance.
- * @param {Object} mapObj
- * @param {Object} position
- * @return {Object}
- */
-const createMarker = ({ mapObj, position }) => {
-  return new google.maps.Marker({ mapObj, position });
-};
+function CreateMarker(mood = "eager", pos) {
+  switch (mood) {
+    case "eager":
+      img = '../images/shibaMapIcon_smaller.png'
+      break;
+    case "annoyed":
+      img = '../images/shibaMapIcon2_smaller.png'
+      break;
+  }
 
-// custom dog icon at geolocation
-// const createMarker = function (mapObj, initialPosition) {
-//   return new google.maps.Marker({
-//     map: mapObj,
-//     position: initialPosition,
-//     icon: '../images/shibaMapIcon2_smaller.png'
-//   })
-// }
+  return new google.maps.Marker({
+    map: mapObj,
+    position: pos,
+    icon: img
+  })
+};
 
 const trackLocation = ({ onSuccess, onError = () => { } }) => {
   if ('geolocation' in navigator === false) {
@@ -58,70 +50,101 @@ const getPositionErrorMessage = code => {
   }
 }
 
-
-
 ///////////////////////////////////////////////////
 // PROGRAM ENTRY POINT                           //
 // invoked by src as callback in handlebars file //
 ///////////////////////////////////////////////////
+var mapObj, infoWindow;
 function initMap() {
-  const initialPosition = { lat: 59.32, lng: 17.84 };
-  const mapObj = createMap(initialPosition);
-  const dogMarker = createMarker({ mapObj, position: initialPosition });
-  const $info = document.getElementById('info');
+  mapObj = CreateMap();
+  infoWindow = new google.maps.InfoWindow;
+  var $info = document.getElementById('info');
 
-  var locationList = [];
-  ///////////////////////////////
-  // START, STOP EVENT HANDLER //
-  ///////////////////////////////
-  $(function () {
-    // jQuery start walk
-    $("#startWalk").on("click", function (event) {
-      console.log("Start Walk!")
+  // Try HTML5 geolocation.
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      var currentPos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
 
-      let watchId = trackLocation({
-        onSuccess: ({ coords: { latitude: lat, longitude: lng } }) => {
-          dogMarker.setPosition({ lat, lng });
-          mapObj.panTo({ lat, lng });
+      mapObj.setCenter(currentPos);
 
-          // write coordinates to the dom
-          $info.textContent = `Lat: ${lat.toFixed(5)} Lng: ${lng.toFixed(5)}`;
-          $info.classList.remove('error');
+      // custom dog icon at geolocation
+      var dogMarker = CreateMarker(mood = "eager", currentPos);
 
-          // console.log((lat, lng))
-          locationList.push({ lat, lng });
-          console.log(locationList)
+      ///////////////////////////////
+      // START, STOP EVENT HANDLER //
+      ///////////////////////////////
+      var walkingPathCoordinates = [];
+      $(function () {
+        // jQuery start walk
+        $("#startWalk").on("click", function (event) {
+          console.log("Start Walk!")
 
-        },
-        onError: err => {
-          console.log($info);
-          $info.textContent = `Error: ${err.message || getPositionErrorMessage(err.code)}`;
-          $info.classList.add('error');
-        }
+          let watchId = trackLocation({
+            onSuccess: ({ coords: { latitude: lat, longitude: lng } }) => {
+              dogMarker.setPosition({ lat, lng });
+              mapObj.panTo({ lat, lng });
 
-      }); // end
+              // write coordinates to the dom
+              $info.textContent = `Lat: ${lat.toFixed(5)} Lng: ${lng.toFixed(5)}`;
+              $info.classList.remove('error');
 
-      // jQuery end walk
-      $("#endWalk").on("click", function (event) {
-        console.log("End Walk!")
+              walkingPathCoordinates.push({ lat, lng });
+              console.log(walkingPathCoordinates)
 
-        // SHOW CURRENT STATIC LOCATION
-
-
-        locationList = []
-        console.log(locationList)
-      }); // end
-
-
-
-
-    });
+              // walking path polyline
+              var walkPath = new google.maps.Polyline({
+                path: walkingPathCoordinates,
+                geodesic: true,
+                strokeColor: '#FF0000',
+                strokeOpacity: 1.0,
+                strokeWeight: 2
+              });
+              walkPath.setMap(mapObj);
 
 
-  });
+              console.log(walkPath)
+            },
+            onError: err => {
+              console.log($info);
+              $info.textContent = `Error: ${err.message || getPositionErrorMessage(err.code)}`;
+              $info.classList.add('error');
+            }
+          }) // end
+        });
 
 
-  console.log(locationList)
+        // jQuery end walk
+        $("#endWalk").on("click", function (event) {
+          console.log("End Walk!")
+          walkingPathCoordinates = []
+          console.log(walkingPathCoordinates)
+          // dogMarker.mood = "annoyed"
+        }); // end
+
+
+      });
+      console.log(walkingPathCoordinates)
+
+    },
+      function () {
+        handleLocationError(true, infoWindow, mapObj.getCenter());
+      });
+  }
+
+  else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, infoWindow, mapObj.getCenter());
+  }
+
 }
 
-
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(browserHasGeolocation ?
+    'Error: The Geolocation service failed.' :
+    'Error: Your browser doesn\'t support geolocation.');
+  infoWindow.open(mapObj);
+}
