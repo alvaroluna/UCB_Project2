@@ -1,2 +1,5 @@
 DROP DATABASE IF EXISTS seniorPets_db;
 CREATE DATABASE seniorPets_db;
+
+DROP DATABASE IF EXISTS testdb;
+CREATE DATABASE testdb;
