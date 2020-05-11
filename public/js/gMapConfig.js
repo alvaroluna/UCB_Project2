@@ -1,6 +1,6 @@
 function CreateMap() {
   return new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -34.397, lng: 150.644 },
+    center: { lat: 37.7749, lng: 122.4194 },
     zoom: 20
   });
 };
@@ -68,9 +68,6 @@ function initMap() {
         lng: position.coords.longitude
       };
 
-      // infoWindow.setPosition(currentPos);
-      // infoWindow.setContent('Woof woof');
-      // infoWindow.open(mapObj);
       mapObj.setCenter(currentPos);
 
       // custom dog icon at geolocation
@@ -79,7 +76,7 @@ function initMap() {
       ///////////////////////////////
       // START, STOP EVENT HANDLER //
       ///////////////////////////////
-      var locationList = [];
+      var walkingPathCoordinates = [];
       $(function () {
         // jQuery start walk
         $("#startWalk").on("click", function (event) {
@@ -94,10 +91,21 @@ function initMap() {
               $info.textContent = `Lat: ${lat.toFixed(5)} Lng: ${lng.toFixed(5)}`;
               $info.classList.remove('error');
 
-              // console.log((lat, lng))
-              locationList.push({ lat, lng });
-              console.log(locationList)
+              walkingPathCoordinates.push({ lat, lng });
+              console.log(walkingPathCoordinates)
 
+              // walking path polyline
+              var walkPath = new google.maps.Polyline({
+                path: walkingPathCoordinates,
+                geodesic: true,
+                strokeColor: '#FF0000',
+                strokeOpacity: 1.0,
+                strokeWeight: 2
+              });
+              walkPath.setMap(mapObj);
+
+
+              console.log(walkPath)
             },
             onError: err => {
               console.log($info);
@@ -111,14 +119,15 @@ function initMap() {
         // jQuery end walk
         $("#endWalk").on("click", function (event) {
           console.log("End Walk!")
-          locationList = []
-          console.log(locationList)
+          walkingPathCoordinates = []
+          console.log(walkingPathCoordinates)
           // dogMarker.mood = "annoyed"
         }); // end
 
 
       });
-      console.log(locationList)
+      console.log(walkingPathCoordinates)
+
     },
       function () {
         handleLocationError(true, infoWindow, mapObj.getCenter());
