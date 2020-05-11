@@ -1,11 +1,11 @@
 //#region HTML Elements
 
-var $registerBtn = $("#register-button");
-var $logInBtn = $("#login-button");
+
 
 //#endregion
 
 //#region Global Variables
+
 //#endregion
 
 
@@ -62,107 +62,52 @@ var API = {
 //#endregion
 
 //#region Functions
-function handleRegister(event) {
+function handleClickDay(event) {
     event.preventDefault();
 
-    var data = {
-        //Get New User Data
-        firstName: $("#new-first-name")
-            .val()
-            .trim(),
-        lastName: $("#new-last-name")
-            .val()
-            .trim(),
-        dlNum: $("#new-dl-num")
-            .val()
-            .trim(),
-        dlState: $("#new-dl-state")
-            .val()
-            .trim(),
-        dob: $("#new-dob")
-            .val()
-            .trim(),
-        streetAddress: $("#new-address")
-            .val()
-            .trim(),
-        city: $("#new-city")
-            .val()
-            .trim(),
-        state: $("#new-state")
-            .val()
-            .trim(),
-        email: $("#new-email")
-            .val()
-            .trim(),
-        phoneNum: $("#new-phone")
-            .val()
-            .trim(),
-        password: $("#new-password")
-            .val()
-            .trim()
-    };
-
-    //Validate new password
-    var passwordValidate = $("#new-password-val")
-        .val()
-        .trim();
-    if (data.password != passwordValidate) {
-        alert("Passwords must match try again");
-        $("#new-password").val(null);
-        $("#new-password-val").val(null);
-        return;
-    }
-    //Validate all required fields entered
-    if (!(data.firstName && data.lastName && data.email)) {
-        alert("First name, last name, and email is required");
-        return;
-    }
-
-    API.createVolunteer(data).then(function (result) {
-        //Load next page with volunteer info
-        var url = window.location.href + "app/" + result.id;
-        window.location.assign(url);
-    });
+    //var selectedDate= data-date
 }
 
-function handleLogIn(event) {
+function handleAddTask(event) {
     event.preventDefault();
 
-    var data = {
-        //Get Log in Data
-        email: $("#log-in-email")
-            .val()
-            .trim(),
-        password: $("#log-in-password")
-            .val()
-            .trim()
-    };
-
-    if (!(data.email && data.password)) {
-        alert("Please enter email and password");
-        return;
-    }
-
-    API.authenticate(data).then(function (result) {
-        //Load app page
-        if (!result.authentic) {
-            alert("password incorrect");
-            return;
-        } else {
-            var url = window.location.href + "app/" + result.id;
-            window.location.assign(url);
-        }
-    });
+    // API.authenticate(data).then(function (result) {
+    //     //Load app page
+    //     if (!result.authentic) {
+    //         alert("password incorrect");
+    //         return;
+    //     } else {
+    //         var url = window.location.href + "app/" + result.id;
+    //         window.location.assign(url);
+    //     }
+    // });
 }
+
+function handleStartTask(event) { }
+
+function handleCompleteTask(event) { }
 //#endregion
 
 //#region Event Handlers
 $(document).ready(function () {
-    //Register
-    $registerBtn.on("click", handleRegister);
 
-    //Log In
-    $logInBtn.on("click", handleLogIn);
+    //Calendar(Populate calendar with date data and disabled buttons. when page renders task data will be passed to page, 
+    //FOR EACH task check IF date matches date data THEN set active with outline color. 
+
+    //Active task(When page renders, all task data will be passed to element, for every task True 
+    //and assigned to volunteer ID, create list for each)
+
+    //Activity(when page renders, get all task data, add to list IF task has volunteer ID and Completed True,)
+
+    //TO DO: Add task button click (send put request to update task to not 
+    //available and assigned to volunteer, refresh page)
+
+    //TO DO: Calendar day click (When you click on day the button color will be solid
+    //and will send api request for all task with that date and assigned false)
+
+    //TO DO: 
+
+
 });
 //#endregion
 
