@@ -5,20 +5,11 @@ function CreateMap() {
   });
 };
 
-function CreateMarker(mood = "eager", pos) {
-  switch (mood) {
-    case "eager":
-      img = '../images/shibaMapIcon_smaller.png'
-      break;
-    case "annoyed":
-      img = '../images/shibaMapIcon2_smaller.png'
-      break;
-  }
-
+function CreateMarker(pos) {
   return new google.maps.Marker({
     map: mapObj,
     position: pos,
-    icon: img
+    icon: '../images/shibaNormal.png'
   })
 };
 
@@ -71,7 +62,7 @@ function initMap() {
       mapObj.setCenter(currentPos);
 
       // custom dog icon at geolocation
-      var dogMarker = CreateMarker(mood = "eager", currentPos);
+      var dogMarker = CreateMarker(currentPos);
 
       ///////////////////////////////
       // START, STOP EVENT HANDLER //
@@ -81,6 +72,11 @@ function initMap() {
         // jQuery start walk
         $("#startWalk").on("click", function (event) {
           console.log("Start Walk!")
+
+          // change shiba marker back to happy (redundent on first run)
+          // setInterval(function () { dogMarker.setIcon('../images/shibaHappy.png') }, 1500);
+          // switch shiba face back to normal
+          dogMarker.setIcon('../images/shibaHappy.png')
 
           let watchId = trackLocation({
             onSuccess: ({ coords: { latitude: lat, longitude: lng } }) => {
@@ -104,7 +100,6 @@ function initMap() {
               });
               walkPath.setMap(mapObj);
 
-
               console.log(walkPath)
             },
             onError: err => {
@@ -118,10 +113,14 @@ function initMap() {
 
         // jQuery end walk
         $("#endWalk").on("click", function (event) {
-          console.log("End Walk!")
+          console.log("End Walk!");
+
+          // switch shiba face back to normal
+          dogMarker.setIcon('../images/shibaAnnoyed.png')
+
           walkingPathCoordinates = []
+
           console.log(walkingPathCoordinates)
-          // dogMarker.mood = "annoyed"
         }); // end
 
 
