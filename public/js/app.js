@@ -1,6 +1,8 @@
 //#region HTML Elements
-
-
+$monthYearHeader = $(".calendarMonthYear");
+$weekOneRow = $("#week-1-row");
+$weekTwoRow = $("#week-2-row");
+$availableTaskList = $(".availableTaskList");
 
 //#endregion
 
@@ -8,199 +10,221 @@
 
 //#endregion
 
-
 //#region Objects
 var API = {
+  //Get All Task
+  getAllTask: function() {
+    return $.ajax({
+      url: "/api/tasks",
+      type: "GET",
+    });
+  },
 
-    //Create New Voluneteer
-    createVolunteer: function (data) {
-        return $.ajax({
-            headers: {
-                "Content-Type": "application/json"
-            },
-            type: "POST",
-            url: "/api/volunteers",
-            data: JSON.stringify(data)
-        });
-    },
-    //Get Volunteer Info
-    getVolunteerInfo: function () {
-        return $.ajax({
-            url: "api/volunteer/",
-            type: "GET"
-        });
-    },
-    //Update Volunteer Info
-    updateVolunteerInfo: function () {
-        return $.ajax({
-            headers: {
-                "Content-Type": "application/json"
-            },
-            type: "PUT",
-            url: "/api/volunteers",
-            data: JSON.stringify(data)
-        });
-    },
-    //Delete Volunteer
-    deleteExample: function (id) {
-        return $.ajax({
-            url: "api/volunteers/" + id,
-            type: "DELETE"
-        });
-    },
-    //Authenticate Volunteer
-    authenticate: function (user) {
-        return $.ajax({
-            url: "api/authenticate/" + user.email + "/" + user.password,
-            type: "GET"
-        });
+  getTask: function(query) {
+    return $.ajax({
+      url: "/api/tasks",
+      type: "GET",
+    });
+  },
 
-        ("api/authenticate/:email/:password");
-    }
+  //GET Specific Task
+  getOneTask: function(id) {
+    return $.ajax({
+      url: "/api/tasks/" + id,
+      type: "GET",
+    });
+  },
 
+  //Update Task Info
+  updateTask: function(id, data) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json",
+      },
+      type: "PUT",
+      url: "/api/tasks/" + id,
+      data: JSON.stringify(data),
+    });
+  },
 };
 //#endregion
 
 //#region Functions
-function handleClickDay(event) {
-    event.preventDefault();
-
-    //var selectedDate= data-date
-}
 
 function handleAddTask(event) {
-    event.preventDefault();
-
-    // API.authenticate(data).then(function (result) {
-    //     //Load app page
-    //     if (!result.authentic) {
-    //         alert("password incorrect");
-    //         return;
-    //     } else {
-    //         var url = window.location.href + "app/" + result.id;
-    //         window.location.assign(url);
-    //     }
-    // });
+  event.preventDefault();
+  var taskId = $(this).attr("data-task-id");
+  var data = { volunteerId: $("#user-name").attr("data-volunteer-id") };
+  console.log(taskId);
+  //Update Task to assign volunteer ID and refresh page
+  API.updateTask(taskId, data).then(function(result) {
+    window.location.reload();
+  });
 }
 
-function handleStartTask(event) { }
+function handleStartTask(event) {}
 
-function handleCompleteTask(event) { }
+function handleCompleteTask(event) {
+  event.preventDefault();
+  var taskId = $(this).attr("data-task-id");
+  var data = { completed: true };
+
+  //Update Task to completed and refresh page
+  API.updateTask(taskId, data).then(function(result) {
+    window.location.reload();
+  });
+}
+
+function handleClickDay(event) {
+  event.preventDefault();
+  $thisButton = $(this);
+
+  //Clear task list
+  $availableTaskList.empty();
+  //Reset button color
+  $(".active-button").removeClass("btn-info");
+  $(".active-button").addClass("btn-outline-info");
+  //Set Active button color
+  $thisButton.removeClass("btn-outline-info");
+  $thisButton.addClass("btn-info");
+
+  //Get available task ID for day
+  var taskID = $thisButton.attr("data-taskids").split(",");
+
+  //Render and append Task list
+  taskID.forEach((task) => {
+    API.getOneTask(task).then(function(result) {
+      renderAvailableTask(result);
+    });
+  });
+}
+
+function getMoments() {
+  //Get array of dates from sunday to end of month
+  var dates = [];
+
+  //Get todays date
+  var now = new Date();
+  var x = now.getDay();
+
+  //Roll back to sunday to start calendar
+  var start = new Date();
+  start.setDate(now.getDate() - x);
+
+  //Get all days in month
+  var daysInMonth = new Date(
+    now.getFullYear(),
+    now.getMonth() + 1,
+    0
+  ).getDate();
+
+  var remainderOfDays = daysInMonth - start.getDate();
+
+  for (i = 0; i < remainderOfDays; i++) {
+    var temp = new Date();
+    temp.setDate(start.getDate() + i);
+
+    console.log();
+    dates.push(moment(temp));
+  }
+
+  return dates;
+}
+
+function findTaskDate(task, date) {
+  return task.date >= date;
+}
+
+function renderCalendar(dates, task) {
+  $monthYearHeader.text(moment().format("MMMM YYYY"));
+  for (var i = 0; i < dates.length; i++) {
+    //Create column
+    var $td = $("<td>");
+
+    //Create button
+    var $dateButton = $(
+      "<button type='button' class='btn btn-calendar btn-sm m-0  waves-effect' >"
+    );
+
+    //filter all task with date and no assigned volunteer
+    var dateTask = task.filter(function(task) {
+      return (
+        task.date === dates[i].format("YYYY-MM-DD") && task.volunteerId === null
+      );
+    });
+
+    //Assign task IDs to array for date
+    var taskIds = [];
+    if (dateTask.length > 0) {
+      dateTask.forEach((task) => {
+        taskIds.push(task.id);
+      });
+      //TO DO: Assign button blue
+      $dateButton.addClass("btn-outline-info active-button");
+    } else {
+      //TO DO: Assign button grey
+      $dateButton.addClass("btn-outline-blue-grey");
+      $dateButton.prop("disabled", true);
+    }
+
+    $dateButton.text(dates[i].date());
+    $dateButton.attr("data-date", dates[i].format("YYYY-MM-DD"));
+    $dateButton.attr("data-id", i);
+    $dateButton.attr("data-taskIds", taskIds);
+    var $modalBtn = $dateButton.clone().addClass("btn-calendar-modal");
+    var $modaltd = $td.clone();
+    $td.append($dateButton);
+    $modaltd.append($modalBtn);
+
+    if (i < 7) {
+      $weekOneRow.append($td);
+      $("#modal-week-1-row").append($modaltd);
+    } else if (i < 14) {
+      $weekTwoRow.append($td);
+      $("#modal-week-2-row").append($modaltd);
+    } else {
+      return;
+    }
+  }
+}
+
+function renderAvailableTask(task) {
+  //create and append element
+  $li = $("<li class='list-group-item available-task'>" + task.task + "</li>");
+  $li.attr("data-task-id", task.id);
+  $span = $("<span class='float-right mr-2'>");
+  $button = $(
+    "<button type='button' class='btn-add-task btn btn-sm orange lighten-2'>"
+  );
+  $button.attr("data-task-id", task.id);
+  $i = $("<i class='fas fa-plus fa-lg m-0 p-0'>");
+
+  //;
+
+  $li.append($span);
+  $span.append($button);
+  $button.append($i);
+
+  // $li.text(task.task);
+
+  $availableTaskList.append($li);
+}
+
 //#endregion
 
 //#region Event Handlers
-$(document).ready(function () {
+$(document).ready(function() {
+  //Get all task when page loads
+  API.getAllTask().then(function(result) {
+    //render calendar
+    renderCalendar(getMoments(), result);
+  });
 
-    //Calendar(Populate calendar with date data and disabled buttons. when page renders task data will be passed to page, 
-    //FOR EACH task check IF date matches date data THEN set active with outline color. 
-
-    //Active task(When page renders, all task data will be passed to element, for every task True 
-    //and assigned to volunteer ID, create list for each)
-
-    //Activity(when page renders, get all task data, add to list IF task has volunteer ID and Completed True,)
-
-    //TO DO: Add task button click (send put request to update task to not 
-    //available and assigned to volunteer, refresh page)
-
-    //TO DO: Calendar day click (When you click on day the button color will be solid
-    //and will send api request for all task with that date and assigned false)
-
-    //TO DO: 
-
-
+  //Calendar Day click
+  $(document).on("click", ".btn-calendar", handleClickDay);
+  //Add Task Click
+  $(document).on("click", ".btn-add-task", handleAddTask);
+  //Complete Task Click
+  $(document).on("click", ".btn-complete-task", handleCompleteTask);
+  //TO DO: Start Task Click
 });
-//#endregion
-
-// // The API object contains methods for each kind of request we'll make
-// var API = {
-//   saveExample: function(example) {
-//     return $.ajax({
-//       headers: {
-//         "Content-Type": "application/json"
-//       },
-//       type: "POST",
-//       url: "api/examples",
-//       data: JSON.stringify(example)
-//     });
-//   },
-//   getExamples: function() {
-//     return $.ajax({
-//       url: "api/examples",
-//       type: "GET"
-//     });
-//   },
-//   deleteExample: function(id) {
-//     return $.ajax({
-//       url: "api/examples/" + id,
-//       type: "DELETE"
-//     });
-//   }
-// };
-
-// // refreshExamples gets new examples from the db and repopulates the list
-// var refreshExamples = function() {
-//   API.getExamples().then(function(data) {
-//     var $examples = data.map(function(example) {
-//       var $a = $("<a>")
-//         .text(example.text)
-//         .attr("href", "/example/" + example.id);
-
-//       var $li = $("<li>")
-//         .attr({
-//           class: "list-group-item",
-//           "data-id": example.id
-//         })
-//         .append($a);
-
-//       var $button = $("<button>")
-//         .addClass("btn btn-danger float-right delete")
-//         .text("ｘ");
-
-//       $li.append($button);
-
-//       return $li;
-//     });
-
-//     $exampleList.empty();
-//     $exampleList.append($examples);
-//   });
-// };
-
-// // handleFormSubmit is called whenever we submit a new example
-// // Save the new example to the db and refresh the list
-// var handleFormSubmit = function(event) {
-//   event.preventDefault();
-
-//   var example = {
-//     text: $exampleText.val().trim(),
-//     description: $exampleDescription.val().trim()
-//   };
-
-//   if (!(example.text && example.description)) {
-//     alert("You must enter an example text and description!");
-//     return;
-//   }
-
-//   API.saveExample(example).then(function() {
-//     refreshExamples();
-//   });
-
-//   $exampleText.val("");
-//   $exampleDescription.val("");
-// };
-
-// // handleDeleteBtnClick is called when an example's delete button is clicked
-// // Remove the example from the db and refresh the list
-// var handleDeleteBtnClick = function() {
-//   var idToDelete = $(this)
-//     .parent()
-//     .attr("data-id");
-
-//   API.deleteExample(idToDelete).then(function() {
-//     refreshExamples();
-//   });
-// };
-
-// // Add event listeners to the submit and delete buttons
-// $submitBtn.on("click", handleFormSubmit);
-// $exampleList.on("click", ".delete", handleDeleteBtnClick);

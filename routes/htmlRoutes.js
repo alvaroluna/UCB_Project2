@@ -10,7 +10,7 @@ module.exports = function(app) {
     db.Example.findAll({}).then(function(dbExamples) {
       res.render("index", {
         msg: "Welcome!",
-        examples: dbExamples
+        examples: dbExamples,
       });
     });
   });
@@ -23,7 +23,7 @@ module.exports = function(app) {
       dbExample
     ) {
       res.render("example", {
-        example: dbExample
+        example: dbExample,
       });
     });
   });
@@ -35,7 +35,7 @@ module.exports = function(app) {
     db.Example.findAll({}).then(function(dbExamples) {
       res.render("dogWalkVolunteer", {
         msg: "Welcome!",
-        examples: dbExamples
+        examples: dbExamples,
       });
     });
   });
@@ -44,13 +44,33 @@ module.exports = function(app) {
   // Load main volunteer page //
   //////////////////////////////
   app.get("/app/:id", function(req, res) {
+    //Get Volunteer Info
     db.Volunteer.findOne({
       where: {
-        id: req.params.id
-      }
+        id: req.params.id,
+      },
     }).then(function(dbVolunteer) {
-      res.render("app", {
-        volunteer: dbVolunteer
+      //Assign volunteer info to handlebars object
+      var hbObject = {
+        volunteer: dbVolunteer.dataValues,
+      };
+
+      //Get all task assigned to volunteer
+      db.Task.findAll({
+        where: { volunteerId: req.params.id },
+      }).then(function(dbTask) {
+        //Assign task to handle bars object
+        var completedTask = dbTask.filter(function(task) {
+          return task.completed === true;
+        });
+        var assignedTask = dbTask.filter(function(task) {
+          return task.completed === false;
+        });
+        hbObject.assignedTask = assignedTask;
+        hbObject.completedTask = completedTask;
+
+        //Render Page
+        res.render("app", hbObject);
       });
     });
   });

@@ -29,9 +29,11 @@
             <div class="col  p-2">
                 {{!-- Welcome Tron --}}
                 <div class="jumbotron">
-                    <h2 id="user-name" class="h1-responsive">Hello, Username!</h2>
-                    <hr class="my-2">
-                    <p>You have # of active quest. Check out the calendar to find more.
+                    <h2 id="user-name" data-volunteer-id={{volunteer.id}} class="h1-responsive">Hello,
+                        {{volunteer.firstName}}
+                    </h2>
+                    <hr class="my-2 orange lighten-2">
+                    <p>You have {{assignedTask.length}} active quest. Check out the calendar to find more.
                     </p>
                     <a target="_blank" class="btn btn-info btn-lg d-block d-sm-none" data-toggle="modal"
                         data-target="#Log-in-modal">
@@ -45,19 +47,11 @@
                 {{!--  --}}
 
                 {{!-- Calendar  --}}
-                <div class="card d-none d-sm-block bg-info  ">
+                <div class="card d-none d-sm-block bg-info ">
                     <div class="card-body white border border-info rounded">
-                        <h5 class="card-title">May 2020<span class="float-right">
-                                {{!-- Arrow Buttons --}}
-                                <span class="badge badge-pill orange mr-2"><a href=""><i
-                                            class="fas fa-angle-left  white-text"></i></a></span>
-                                <span class="badge badge-pill orange"><a href=""><i
-                                            class="fas fa-angle-right white-text"></i></a></span>
-
-                            </span></h5>
+                        <h5 class="card-title calendarMonthYear"></h5>
                         <div class="table-responsive ">
-                            <table class="table table-sm border w-auto mx-auto">
-
+                            <table class="table table-sm  w-auto mx-auto">
                                 <thead class="text-center ">
                                     <tr class="d-none d-lg-table-row">
 
@@ -81,114 +75,27 @@
                                         <th scope="col">SA</th>
                                     </tr>
                                 </thead>
-
                                 <tbody class="text-center">
                                     {{!-- Week --}}
-
-                                    {{!-- FIX CALENDAR BUTTON CLASS TO MAKE WIDER FOR BIG SCREEN --}}
-                                    <tr>
-                                        <td>
-                                            <button type="button"
-                                                class="btn btn-calendar btn-outline-blue-grey btn-sm m-0  waves-effect"
-                                                disabled>01</button>
-
-                                        </td>
-
-                                        <td>
-                                            <button type="button "
-                                                class="btn btn-calendar btn-outline-blue-grey btn-sm m-0 waves-effect"
-                                                disabled>02</button>
-                                        </td>
-                                        <td>
-                                            <button type="button"
-                                                class="btn btn-calendar btn-info btn-sm m-0  waves-effect">03</button>
-                                        </td>
-                                        <td>
-                                            <button type="button"
-                                                class="btn btn-calendar btn-outline-info btn-sm m-0  waves-effect">04</button>
-                                        </td>
-                                        <td>
-                                            <button type="button"
-                                                class="btn btn-calendar btn-outline-info btn-sm m-0  waves-effect">05</button>
-                                        </td>
-                                        <td>
-                                            <button type="button"
-                                                class="btn btn-calendar btn-outline-blue-grey btn-sm  m-0 waves-effect"
-                                                disabled>06</button>
-                                        </td>
-                                        <td>
-                                            <button type="button"
-                                                class="btn btn-calendar btn-outline-blue-grey btn-sm  m-0 waves-effect"
-                                                disabled>07</button>
-                                        </td>
+                                    <tr id="week-1-row">
+                                    </tr>
+                                    <tr id="week-2-row">
                                     </tr>
                                     {{!-- /. Week --}}
-
-                                    {{!-- Week --}}
-                                    {{!-- <tr>
-                                        <td class="custom-td" style="width:max-content">
-                                            <button type="button"
-                                                class="btn btn-outline-blue-grey btn-sm m-0 px-2 waves-effect"
-                                                disabled>01</button>
-
-                                        </td>
-                                        <td>
-                                            <button type="button"
-                                                class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">09</button>
-                                        </td>
-                                        <td>
-                                            <button type="button"
-                                                class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">10</button>
-                                        </td>
-                                        <td>
-                                            <button type="button"
-                                                class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">11</button>
-                                        </td>
-                                        <td>
-                                            <button type="button"
-                                                class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">12</button>
-                                        </td>
-                                        <td>
-                                            <button type="button"
-                                                class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">13</button>
-                                        </td>
-                                        <td>
-                                            <button type="button"
-                                                class="btn btn-outline-info btn-sm m-0 px-2 waves-effect">14</button>
-                                        </td>
-                                    </tr> --}}
-                                    {{!-- /. Week --}}
-
                                 </tbody>
                             </table>
                         </div>
 
-
-
-
-
                         <hr class="orange lighten-2">
 
-
-
-                        <ul class="list-group list-group-flush border rounded-sm justify-content-center mb-3">
-                            <li class="list-group-item">Cras justo odio <span class="float-right mr-2"><button
+                        {{!-- Available Task List --}}
+                        <ul
+                            class="availableTaskList list-group list-group-flush border rounded-sm justify-content-center mb-3">
+                            {{!-- <li class="list-group-item">Cras justo odio <span class="float-right mr-2"><button
                                         type="button" class="btn btn-sm orange lighten-2"><i
-                                            class="fas fa-plus fa-lg m-0 p-0"></i></button></span></li>
-                            <li class="list-group-item">Cras justo odio <span class="float-right mr-2"><button
-                                        type="button" class="btn btn-sm orange lighten-2"><i
-                                            class="fas fa-plus fa-lg m-0 p-0"></i></button></span></li>
-                            <li class="list-group-item">Cras justo odio <span class="float-right mr-2"><button
-                                        type="button" class="btn btn-sm orange lighten-2"><i
-                                            class="fas fa-plus fa-lg m-0 p-0"></i></button></span></li>
-                            <li class="list-group-item">Cras justo odio <span class="float-right mr-2"><button
-                                        type="button" class="btn btn-sm orange lighten-2"><i
-                                            class="fas fa-plus fa-lg m-0 p-0"></i></button></span></li>
+                                            class="fas fa-plus fa-lg m-0 p-0"></i></button></span></li> --}}
 
                         </ul>
-
-
-
                     </div>
                 </div>
                 {{!-- /. Calender --}}
@@ -200,159 +107,19 @@
             <div class="col   my-2 p-1 ">
                 {{!-- Accordion Card for Generated through Javascript/Ajax , Example here for Layout testing --}}
                 <div class="accordion orange lighten-2 border rounded p-1 h-100" id="taskListAccordion">
-                    {{!-- Task --}}
+
                     <h4 class="text-center mt-2">Active Task</h4>
                     <hr class="light">
-                    <div class="card mb-1">
-                        <div class="card-header p-0 bg-info border-bottom " id="task-0-name">
-                            <a data-toggle="collapse" data-parent="#taskListAccordion" href="#task0"
-                                aria-expanded="true" aria-controls="headingTwo">
-                                <i class="fas fa-dog fa-2x p-3 mr-4 float-left black-text bg-white"
-                                    aria-hidden="true"></i>
-                                <h4 class="text-uppercase text-white mb-0 py-3 mt-1">
-                                    Task #1 Name
-                                </h4>
-                            </a>
-                        </div>
-                        <div id="task0" class="collapse" aria-labelledby="headingTwo" data-parent="#taskListAccordion">
-                            <div class="card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-                                richardson ad
-                                squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
-                                quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
-                                on it
-                                squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                helvetica,
-                                craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
-                                excepteur
-                                butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic
-                                synth
-                                nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                            </div>
-                            <div class="card-footer ">
-                                <a id="completeTask0" class="mb-2 badge badge-pill info-color float-right "><i
-                                        class="fas fa-check fa-2x" aria-hidden="true"></i></a>
-                                <a id="startTask0" class="mb-2 badge badge-pill info-color float-left "><i
-                                        class="fas fa-play fa-2x" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    {{!-- /. Task --}}
 
                     {{!-- Task --}}
-                    <div class="card mb-1">
-                        <div class="card-header p-0 bg-info border-bottom " id="task-1-name">
-                            <a data-toggle="collapse" data-parent="#taskListAccordion" href="#task1"
-                                aria-expanded="true" aria-controls="headingTwo">
-                                <i class="fas fa-dog fa-2x p-3 mr-4 float-left black-text bg-white"
-                                    aria-hidden="true"></i>
-                                <h4 class="text-uppercase text-white mb-0 py-3 mt-1">
-                                    Task #2 Name
-                                </h4>
-                            </a>
-                        </div>
-                        <div id="task1" class="collapse" aria-labelledby="headingTwo" data-parent="#taskListAccordion">
-                            <div class="card-body">
-                                {{!--                    --}}
-                                {{!-- google maps window --}}
-                                {{!--                    --}}
-                                <h5>Dog Walk Volunteer</h5>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div id="map"></div>
+                    {{#each assignedTask}}
+                    {{#unless completed}}
+                    {{> task/activeTask-block }}
+                    {{/unless}}
+                    {{/each}}
 
-
-
-                                    </div>
-                                </div>
-
-
-
-
-                            </div>
-                            <div class="card-footer ">
-                                <a id="completeTask1" class="mb-2 badge badge-pill info-color float-right "><i
-                                        class="fas fa-check fa-2x" aria-hidden="true"></i></a>
-                                <a id="startTask1" class="mb-2 badge badge-pill info-color float-left "><i
-                                        class="fas fa-play fa-2x" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                    </div>
                     {{!-- /. Task --}}
 
-                    {{!-- Task --}}
-                    <div class="card mb-1">
-                        <div class="card-header p-0 bg-info border-bottom " id="task-2-name">
-                            <a data-toggle="collapse" data-parent="#taskListAccordion" href="#task2"
-                                aria-expanded="true" aria-controls="headingTwo">
-                                <i class="fas fa-cat fa-2x p-3 mr-4 float-left black-text bg-white"
-                                    aria-hidden="true"></i>
-                                <h4 class="text-uppercase text-white mb-0 py-3 mt-1">
-                                    Task #3 Name
-                                </h4>
-                            </a>
-                        </div>
-                        <div id="task2" class="collapse" aria-labelledby="headingTwo" data-parent="#taskListAccordion">
-                            <div class="card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-                                richardson ad
-                                squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
-                                quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
-                                on it
-                                squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                helvetica,
-                                craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
-                                excepteur
-                                butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic
-                                synth
-                                nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                            </div>
-                            <div class="card-footer ">
-                                <a id="completeTask2" class="mb-2 badge badge-pill info-color float-right "><i
-                                        class="fas fa-check fa-2x" aria-hidden="true"></i></a>
-                                <a id="startTask2" class="mb-2 badge badge-pill info-color float-left "><i
-                                        class="fas fa-play fa-2x" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    {{!-- /. Task --}}
-
-                    {{!-- Task --}}
-                    <div class="card mb-1">
-                        <div class="card-header p-0 bg-info border-bottom" id="task-3-name">
-                            <a data-toggle="collapse" data-parent="#taskListAccordion" href="#task3"
-                                aria-expanded="true" aria-controls="headingTwo">
-                                <i class="fas fa-cat fa-2x p-3 mr-4 float-left black-text bg-white"
-                                    aria-hidden="true"></i>
-                                <h4 class="text-uppercase text-white mb-0 py-3 mt-1">
-                                    Task #4 Name
-                                </h4>
-                            </a>
-                        </div>
-                        <div id="task3" class="collapse" aria-labelledby="headingTwo" data-parent="#taskListAccordion">
-                            <div class="card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-                                richardson ad
-                                squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
-                                quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
-                                on it
-                                squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                helvetica,
-                                craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
-                                excepteur
-                                butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic
-                                synth
-                                nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                            </div>
-                            <div class="card-footer ">
-                                <a id="completeTask3" class="mb-2 badge badge-pill info-color float-right "><i
-                                        class="fas fa-check fa-2x" aria-hidden="true"></i></a>
-                                <a id="startTask3" class="mb-2 badge badge-pill info-color float-left "><i
-                                        class="fas fa-play fa-2x" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    {{!-- /. Task --}}
 
 
 
@@ -377,26 +144,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Something...</td>
-                                        <td>10/20/2020</td>
-                                        <td>10/21/2021</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Something...</td>
-                                        <td>10/20/2020</td>
-                                        <td>10/21/2021</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Something...</td>
-                                        <td>10/20/2020</td>
-                                        <td>10/21/2021</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Something...</td>
-                                        <td>10/20/2020</td>
-                                        <td>10/21/2021</td>
-                                    </tr>
+                                    {{#each completedTask}}
+                                    {{> task/historyTask-block }}
+                                    {{/each}}
                                 </tbody>
                             </table>
                         </div>
@@ -427,7 +177,7 @@
 
             <div class="modal-header">
                 {{!-- Add hook for calendar month --}}
-                <h5 class="card-title ">May 2020</h5>
+                <h5 class="card-title calendarMonthYear"></h5>
             </div>
 
 
@@ -453,78 +203,12 @@
 
 
                             {{!-- Week --}}
-                            <tr>
-                                <td>
-                                    <button type="button"
-                                        class="btn btn-calendar-modal btn-outline-blue-grey btn-sm m-0 px-2 waves-effect"
-                                        disabled>01</button>
-                                </td>
-
-                                <td>
-                                    <button type="button"
-                                        class="btn btn-calendar-modal btn-outline-blue-grey btn-sm m-0 px-2 waves-effect"
-                                        disabled>02</button>
-                                </td>
-                                <td>
-                                    <button type="button"
-                                        class="btn btn-calendar-modal btn-info btn-sm m-0 px-2 waves-effect">03</button>
-                                </td>
-                                <td>
-                                    <button type="button"
-                                        class="btn btn-calendar-modal btn-outline-info btn-sm m-0 px-2 waves-effect">04</button>
-                                </td>
-                                <td>
-                                    <button type="button"
-                                        class="btn btn-calendar-modal btn-outline-info btn-sm m-0 px-2 waves-effect">05</button>
-                                </td>
-                                <td>
-                                    <button type="button"
-                                        class="btn btn-calendar-modal btn-outline-blue-grey btn-sm px-2 m-0 waves-effect"
-                                        disabled>06</button>
-                                </td>
-                                <td>
-                                    <button type="button"
-                                        class="btn btn-calendar-modal btn-outline-blue-grey btn-sm px-2 m-0 waves-effect"
-                                        disabled>07</button>
-                                </td>
+                            <tr id="modal-week-1-row">
                             </tr>
                             {{!-- /. Week --}}
 
                             {{!-- Week --}}
-                            <tr>
-                                <td>
-                                    <button type="button"
-                                        class="btn btn-calendar-modal btn-outline-blue-grey btn-sm m-0 px-2 waves-effect"
-                                        disabled>01</button>
-                                </td>
-
-                                <td>
-                                    <button type="button"
-                                        class="btn btn-calendar-modal btn-outline-blue-grey btn-sm m-0 px-2 waves-effect"
-                                        disabled>02</button>
-                                </td>
-                                <td>
-                                    <button type="button"
-                                        class="btn btn-calendar-modal btn-info btn-sm m-0 px-2 waves-effect">03</button>
-                                </td>
-                                <td>
-                                    <button type="button"
-                                        class="btn btn-calendar-modal btn-outline-info btn-sm m-0 px-2 waves-effect">04</button>
-                                </td>
-                                <td>
-                                    <button type="button"
-                                        class="btn btn-calendar-modal btn-outline-info btn-sm m-0 px-2 waves-effect">05</button>
-                                </td>
-                                <td>
-                                    <button type="button"
-                                        class="btn btn-calendar-modal btn-outline-blue-grey btn-sm px-2 m-0 waves-effect"
-                                        disabled>06</button>
-                                </td>
-                                <td>
-                                    <button type="button"
-                                        class="btn btn-calendar-modal btn-outline-blue-grey btn-sm px-2 m-0 waves-effect"
-                                        disabled>07</button>
-                                </td>
+                            <tr id="modal-week-2-row">
                             </tr>
                             {{!-- /. Week --}}
 
@@ -533,20 +217,11 @@
                 </div>
                 <hr class="orange lighten-2">
 
-                <ul class="list-group list-group-flush border rounded-sm justify-content-center mb-3">
-                    <li class="list-group-item py-1">Cras justo odio <span class="float-right"><button type="button"
+                <ul class="availableTaskList list-group list-group-flush border rounded-sm justify-content-center mb-3">
+                    {{!-- <li class="list-group-item py-1">Cras justo odio <span class="float-right"><button type="button"
                                 class="btn btn-sm orange lighten-2 px-2"><i
                                     class="fas fa-plus fa-lg m-0 p-0"></i></button></span></li>
-                    <li class="list-group-item py-1">Cras justo odio <span class="float-right"><button type="button"
-                                class="btn btn-sm orange lighten-2 px-2"><i
-                                    class="fas fa-plus fa-lg m-0 p-0"></i></button></span></li>
-                    <li class="list-group-item py-1">Cras justo odio <span class="float-right "><button type="button"
-                                class="btn btn-sm orange lighten-2 px-2"><i
-                                    class="fas fa-plus fa-lg m-0 p-0"></i></button></span></li>
-                    <li class="list-group-item py-1">Cras justo odio <span class="float-right "><button type="button"
-                                class="btn btn-sm orange lighten-2 px-2"><i
-                                    class="fas fa-plus fa-lg m-0 p-0"></i></button></span></li>
-
+                     --}}
                 </ul>
             </div>
             <!--Footer-->
