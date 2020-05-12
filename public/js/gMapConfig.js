@@ -69,7 +69,9 @@ function initMap() {
       ///////////////////////////////
       var walkingPathCoordinates = [];
       $(function () {
+        // 
         // jQuery start walk
+        // 
         $("#startWalk").on("click", function (event) {
           console.log("Start Walk!")
 
@@ -109,9 +111,9 @@ function initMap() {
             }
           }) // end
         });
-
-
+        // 
         // jQuery end walk
+        // 
         $("#endWalk").on("click", function (event) {
           console.log("End Walk!");
 
