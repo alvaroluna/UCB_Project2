@@ -44,13 +44,26 @@ module.exports = function(app) {
   // Load main volunteer page //
   //////////////////////////////
   app.get("/app/:id", function(req, res) {
+    //Get Volunteer Info
     db.Volunteer.findOne({
       where: {
         id: req.params.id
       }
     }).then(function(dbVolunteer) {
-      res.render("app", {
-        volunteer: dbVolunteer
+      //Assign volunteer info to handlebars object
+      var hbObject = {
+        volunteer: dbVolunteer.dataValues
+      };
+
+      //Get all task assigned to volunteer
+      db.Task.findAll({
+        where: { volunteerId: req.params.id }
+      }).then(function(dbTask) {
+        //Assign task to handle bars object
+        hbObject.assignedTask = dbTask;
+
+        //Render Page
+        res.render("app", hbObject);
       });
     });
   });

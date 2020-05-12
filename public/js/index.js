@@ -54,7 +54,19 @@ var API = {
             url: "api/authenticate/" + user.email + "/" + user.password,
             type: "GET"
         });
+    },
+        ///////  Check to see if email address already exists in the volunteer table.///////
+    testVolEmail: function (user) {
+        return $.ajax({
+            url: "/api/validEmail/" + user.email,
+            type: "GET"
+        });
+    }
 
+
+
+
+    //#endregion
         ("api/authenticate/:email/:password");
     }
 
@@ -117,12 +129,25 @@ function handleRegister(event) {
         alert("First name, last name, and email is required");
         return;
     }
-
-    API.createVolunteer(data).then(function (result) {
-        //Load next page with volunteer info
-        var url = window.location.href + "app/" + result.id;
-        window.location.assign(url);
-    });
+        /////////////  check to see if email address already exists in db, if no, then create new volunteer /////
+    API.testVolEmail({email:data.email}).then(function(result){
+        console.log(data.email);
+       
+       
+    if (result === false) {
+        API.createVolunteer(data).then(function (result) {
+            //Load next page with volunteer info
+            var url = window.location.href + "app/" + result.id;
+            window.location.assign(url);
+        })
+    }
+    else if (result === true) {
+        alert("Email address already exists !");
+        $("#new-email").val(null);
+        return;
+    } 
+}) 
+   
 }
 
 function handleLogIn(event) {
