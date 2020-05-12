@@ -52,7 +52,7 @@ module.exports = function(app) {
     }).then(function(dbVolunteer) {
       //Assign volunteer info to handlebars object
       var hbObject = {
-        volunteer: dbVolunteer.dataValues,
+        volunteer: dbVolunteer.dataValues
       };
 
       //Get all task assigned to volunteer

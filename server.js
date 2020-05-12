@@ -3,8 +3,9 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 
 var db = require("./models");
-var seniorSeed = require("./seeders/seniorSeed");
-var taskSeed = require("./seeders/taskSeed");
+var seniorSeed = require("./seeders/seniorSeed")
+var taskSeed = require("./seeders/taskSeed")
+var volunteerSeed = require("./seeders/volunteerSeed")
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -34,28 +35,34 @@ if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
 
-// Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
-  //Destroy then Seed Seniors
+if (process.env.NODE_ENV === "production") {
+  syncOptions.force = false;
+}
+ 
+
+// Starting the server, syncing our models -& seeding tables initially------------/
+
+db.sequelize.sync(syncOptions).then(function () {
   db.Senior.destroy({
     where: {},
     truncate: true
-  }).then(function() {
+  }).then(function () { 
     db.Senior.bulkCreate(seniorSeed);
   });
+  db.Volunteer.destroy({
+    where: {},
+    truncate: true
+  }).then(function () { 
+    db.Volunteer.bulkCreate(volunteerSeed);
+  });
+  db.Task.destroy({
+    where: {},
+    truncate: true
+  }).then(function () { 
+    db.Task.bulkCreate(taskSeed); 
+  });
 
-  //TESTING ONLY
-  if (process.env.HB_TEST_ENV === "true") {
-    db.Task.destroy({
-      where: {},
-      truncate: true
-    }).then(function() {
-      db.Task.bulkCreate(taskSeed);
-    });
-  }
-  //TESTING ONLY REMOVE BEFORE COMMIT
-
-  app.listen(PORT, function() {
+  app.listen(PORT, function () {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,
@@ -65,3 +72,4 @@ db.sequelize.sync(syncOptions).then(function() {
 });
 
 module.exports = app;
+

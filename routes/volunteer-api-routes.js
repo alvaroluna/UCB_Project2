@@ -7,6 +7,32 @@ module.exports = function(app) {
     });
   });
 
+  /// See if email address already exists in volunteer table, if yes, returns true, //////////
+
+  app.get("/api/validEmail/:email", function(req, res) {
+    console.log(req.params);
+    db.Volunteer.findOne({
+      where: {
+        email: req.params.email    
+      }
+    }).then(function(cb) {
+     
+     if (cb === null) {
+       console.log("false")
+       res.send(false);
+     } 
+     else {
+      console.log("true")
+      res.send(true);
+     }
+    });
+  });
+
+
+
+
+
+
   app.get("/api/volunteers/:id", function(req, res) {
     db.Volunteer.findOne({
       where: {
