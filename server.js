@@ -4,6 +4,8 @@ var exphbs = require("express-handlebars");
 
 var db = require("./models");
 var seniorSeed = require("./seeders/seniorSeed")
+var taskSeed = require("./seeders/taskSeed")
+var volunteerSeed = require("./seeders/volunteerSeed")
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -45,12 +47,17 @@ if (process.env.NODE_ENV === "production") {
 }
  
 
-// Starting the server, syncing our models ------------------------------------/
+// Starting the server, syncing our models -& seeding tables initially------------/
+
 db.sequelize.sync(syncOptions).then(function () {
   db.Senior.destroy({
     where: {},
     truncate: true
-  }).then(function () { db.Senior.bulkCreate(seniorSeed); })
+  }).then(function () { 
+    db.Senior.bulkCreate(seniorSeed);
+    db.Volunteer.bulkCreate(volunteerSeed);
+    db.Task.bulkCreate(taskSeed); 
+  })
   app.listen(PORT, function () {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
@@ -61,3 +68,4 @@ db.sequelize.sync(syncOptions).then(function () {
 });
 
 module.exports = app;
+
