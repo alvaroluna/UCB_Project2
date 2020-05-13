@@ -47,7 +47,7 @@ if (process.env.NODE_ENV === "test") {
 }
 
 if (process.env.NODE_ENV === "production") {
-  syncOptions.force = false;
+  syncOptions.force = true;
 }
 
 // Starting the server, syncing our models -& seeding tables initially------------/
