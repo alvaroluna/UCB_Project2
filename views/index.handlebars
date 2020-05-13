@@ -1,27 +1,10 @@
 <!-- Navbar -->
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
-  <a class="navbar-brand" href="#">Logo</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarText">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item ">
-        <a class="nav-link" href="/">Home
-        </a>
-      </li>
-
-    </ul>
-    <span class="navbar-text white-text">
-      For seniors needing services please contact admin@email.com
-    </span>
-  </div>
-</nav>
+{{> nav/navbar-block }}
 <!-- Navbar -->
 
 <!-- Full Page Intro -->
-<div class="view landing-view full-page-intro background-image" <!-- Mask & flexbox options-->
+<div class="view landing-view full-page-intro background-image">
+  <!-- Mask & flexbox options-->
   <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
 
     <!-- Content -->
@@ -33,18 +16,18 @@
         <!--Grid column-->
         <div class="col-md-6 p-3 mb-4  white-text text-center text-md-left">
 
-          <h1 class="display-4 font-weight-bold">Volunteer today with app name ... </h1>
+          <h1 class="display-4 font-weight-bold">Senior Pets</h1>
 
           <hr class="hr-light">
 
           <p>
-            <strong>Something good here to sell</strong>
+            <strong>The definitive senior pet assistance app</strong>
           </p>
 
-          <p class="mb-4 d-none d-md-block">
-            <strong>overview of app services bla h blah kjgaslkjfdghlJASGEHLjaghdlKJGAHFL
-              Lasjghdljy hgal.</strong>
-          </p>
+          <h3 class="mb-4 d-none d-md-block">
+            <strong>Find local seniors with pet care needs! Add, coordinate and manage all of thier needs in one simple
+              to use app.</strong>
+          </h3>
 
           <a target="_blank" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Log-in-modal">
             Get Started
@@ -71,11 +54,9 @@
 
   </div>
   <!-- Content -->
-
 </div>
 <!-- Mask & flexbox options-->
 
-</div>
 <!-- Full Page Intro -->
 
 <!--Main layout-->
@@ -118,12 +99,12 @@
       <div class="modal-header">
         <ul class="nav  nav-pills  " id="myTab" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active " data-toggle="tab" href="#log-in-panel" role="tab"><i
+            <a class="nav-link active active-custom" data-toggle="tab" href="#log-in-panel" role="tab"><i
                 class="fas fa-user mr-1"></i>
               Login</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link " data-toggle="tab" href="#register-panel" role="tab"><i
+            <a class="nav-link active-custom " data-toggle="tab" href="#register-panel" role="tab"><i
                 class="fas fa-user-plus mr-1"></i>
               Register</a>
           </li>
@@ -133,7 +114,7 @@
       {{!-- Modal Panels --}}
       <div class="tab-content">
         <!--Log in panel-->
-        <div class="tab-pane fade in show active" id="log-in-panel" role="tabpanel">
+        <div class="tab-pane fade in show active " id="log-in-panel" role="tabpanel">
 
           <!--Body-->
           <div class="modal-body mb-1">
@@ -149,14 +130,13 @@
               <label data-error="wrong" data-success="right" for="modalLRInput11">Your password</label>
             </div>
             <div class="text-center mt-2">
-              <button id="login-button" class="btn btn-indigo">Log in <i class="fas fa-sign-in ml-1"></i></button>
+              <button id="login-button" class="btn btn-info">Log in <i class="fas fa-sign-in ml-1"></i></button>
             </div>
           </div>
           <!--Footer-->
           <div class="modal-footer">
 
-            <button type="button" class="btn btn-outline-indigo waves-effect ml-auto"
-              data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">Close</button>
           </div>
 
         </div>
@@ -202,7 +182,7 @@
                   <div class="md-form form-sm ">
                     <i class="fas fa-car-alt prefix"></i>
                     <input type="text" id="new-dl-num" class="form-control form-control-sm validate">
-                    <label data-error="wrong" data-success="right" for="modalLRInput12">Driver Lic. #</label>
+                    <label data-error="wrong" data-success="right" for="modalLRInput12">Driver Lic #</label>
                   </div>
                 </div>
                 <!-- Grid column -->
@@ -217,12 +197,6 @@
                 </div>
                 <!-- Grid column -->
 
-                <div class="col">
-                  <div class="md-form form-sm ">
-                    <input type="Date" id="new-dob" class="form-control form-control-sm validate">
-                    <label data-error="wrong" data-success="right" for="modalLRInput12">Date of Birth</label>
-                  </div>
-                </div>
               </div>
               {{!-- /. Drivers Lic info and Age --}}
 
@@ -234,7 +208,7 @@
                   <div class="md-form form-sm ">
                     <i class="fas fa-home prefix"></i>
                     <input type="text" id="new-address" class="form-control form-control-sm validate">
-                    <label data-error="wrong" data-success="right" for="modalLRInput12">Street Address</label>
+                    <label data-error="wrong" data-success="right" for="modalLRInput12">Address</label>
                   </div>
                 </div>
                 <!-- Grid column -->
@@ -269,7 +243,7 @@
                   <div class="md-form form-sm ">
                     <i class="fas fa-envelope prefix"></i>
                     <input type="email" id="new-email" class="form-control form-control-sm validate">
-                    <label data-error="wrong" data-success="right" for="modalLRInput12">Your email</label>
+                    <label data-error="wrong" data-success="right" for="modalLRInput12">Email</label>
                   </div>
                 </div>
               </div>
@@ -281,7 +255,14 @@
                   <div class="md-form form-sm ">
                     <i class="fas fa-phone prefix"></i>
                     <input type="text" id="new-phone" class="form-control form-control-sm validate">
-                    <label data-error="wrong" data-success="right" for="modalLRInput12">Your Phone Number</label>
+                    <label data-error="wrong" data-success="right" for="modalLRInput12">Phone Number</label>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <div class="md-form form-sm ">
+                    <input type="Date" id="new-dob" class="form-control form-control-sm validate">
+                    <label data-error="wrong" data-success="right" for="modalLRInput12">Date of Birth</label>
                   </div>
                 </div>
               </div>
@@ -310,7 +291,7 @@
               {{!-- /. Password --}}
 
               <div class="text-center form-sm mb-2">
-                <button id="register-button" class="btn btn-indigo">Sign up <i class="fas fa-sign-in ml-1"></i></button>
+                <button id="register-button" class="btn btn-info">Sign up <i class="fas fa-sign-in ml-1"></i></button>
               </div>
 
 
@@ -324,8 +305,7 @@
           <!--Footer-->
           <div class="modal-footer">
 
-            <button type="button" class="btn btn-outline-indigo waves-effect ml-auto"
-              data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">Close</button>
           </div>
         </div>
         <!--/.Register panel-->
