@@ -49,13 +49,10 @@ header,
   }
 }
 
-
-
 @media (min-width: 800px) and (max-width: 850px) {
   .navbar:not(.top-nav-collapse) {
     background: #1c2331 !important;
   }
-  
 }
 /* Navbar animation */
 .navbar {
@@ -84,60 +81,50 @@ header,
   background-color: #1c2331;
 }
 
-
 /* Calendar */
 
 .btn.btn-calendar {
   padding-right: 1rem;
   padding-left: 1rem;
-  
 }
 
 .btn.btn-calendar-modal {
-  padding-right: .45rem !important;
-  padding-left: .45rem !important;
-  
+  padding-right: 0.45rem !important;
+  padding-left: 0.45rem !important;
 }
 
 @media (min-width: 340px) and (max-width: 365px) {
   .btn.btn-calendar-modal {
-    padding-right: .6rem !important;
-    padding-left: .6rem !important;
-    
+    padding-right: 0.6rem !important;
+    padding-left: 0.6rem !important;
   }
 }
 
 @media (min-width: 365px) and (max-width: 380px) {
   .btn.btn-calendar-modal {
-    padding-right: .7rem !important;
-    padding-left: .7rem !important;
-    
+    padding-right: 0.7rem !important;
+    padding-left: 0.7rem !important;
   }
 }
 
 @media (min-width: 380px) and (max-width: 1024px) {
   .btn.btn-calendar-modal {
-    padding-right: .9rem !important;
-    padding-left: .9rem !important;
-    
+    padding-right: 0.9rem !important;
+    padding-left: 0.9rem !important;
   }
 }
 
-
-
 @media (min-width: 850px) and (max-width: 1024px) {
   .btn.btn-calendar {
-    padding-right: .5rem;
-    padding-left: .5rem;
-    
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
   }
 }
 
 @media (min-width: 700px) and (max-width: 768px) {
   .btn.btn-calendar {
-    padding-right: .25rem;
-    padding-left: .25rem;
-    
+    padding-right: 0.25rem;
+    padding-left: 0.25rem;
   }
 }
 
@@ -148,11 +135,16 @@ header,
   /* Always set the map height explicitly to define the size of the div element that contains the map. */
   /* height: 100%; */
   height: 600px;
-  }
+}
 
-html, body {
+html,
+body {
   /* Optional: Makes the sample page fill the window. */
   height: 100%;
   margin: 0;
   padding: 0;
-  }
+}
+
+.active.nav-link.active-custom {
+  background-color: #33b5e5 !important;
+}

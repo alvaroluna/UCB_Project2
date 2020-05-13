@@ -1,23 +1,9 @@
 <!-- Navbar -->
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
-    <a class="navbar-brand" href="#">Logo</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item ">
-                <a class="nav-link" href="/">Home
-                </a>
-            </li>
-        </ul>
-    </div>
-</nav>
+{{> nav/navbar-block }}
 <!-- Navbar -->
 
-
-
+{{!-- Hide senior notification on main page --}}
+<script>$("#seniorNotification").hide()</script>
 
 <!--Main layout-->
 <main id="app-wrapper" class="background-image d-flex justify-content-center min-vh-100">
@@ -170,9 +156,7 @@
     </div>
 
 </main>
-
 <!--Main layout-->
-
 
 {{!-- CALENDAR MODAL --}}
 <div class="modal fade" id="Log-in-modal" tabindex="-1" role="dialog" aria-hidden="true">
