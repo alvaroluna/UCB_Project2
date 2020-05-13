@@ -4,10 +4,10 @@ module.exports = function(app) {
   app.get("/api/tasks", function(req, res) {
     var query = {};
     if (req.query.volunteer_id) {
-      query.VolunteerId = req.query.volunteer_id;
+      query.volunteerId = req.query.volunteer_id;
     }
     db.Task.findAll({
-      where: query
+      where: query,
     }).then(function(cb) {
       res.json(cb);
     });
@@ -16,8 +16,8 @@ module.exports = function(app) {
   app.get("/api/tasks/:id", function(req, res) {
     db.Task.findOne({
       where: {
-        id: req.params.id
-      }
+        id: req.params.id,
+      },
     }).then(function(cb) {
       res.json(cb);
     });
@@ -32,18 +32,18 @@ module.exports = function(app) {
   app.delete("/api/tasks/:id", function(req, res) {
     db.Task.destroy({
       where: {
-        id: req.params.id
-      }
+        id: req.params.id,
+      },
     }).then(function(cb) {
       res.json(cb);
     });
   });
 
-  app.put("/api/tasks", function(req, res) {
+  app.put("/api/tasks/:id", function(req, res) {
     db.Task.update(req.body, {
       where: {
-        id: req.body.id
-      }
+        id: req.params.id,
+      },
     }).then(function(cb) {
       res.json(cb);
     });

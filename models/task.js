@@ -1,15 +1,18 @@
 module.exports = function(sequelize, DataTypes) {
   var Task = sequelize.define("Task", {
     volunteerId: DataTypes.INTEGER,
-    task: { type: DataTypes.ENUM, values: ["01", "02", "03", "04"] },
-    date: DataTypes.DATE,
+    task: {
+      type: DataTypes.ENUM,
+      values: ["Dog Walking", "Grooming", "Vet Visit", "Pet Sitting"],
+    },
+    date: DataTypes.DATEONLY,
     seniorId: DataTypes.INTEGER,
     completed: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: false
+      defaultValue: false,
     },
-    specialInstr: DataTypes.TEXT
+    specialInstr: DataTypes.TEXT,
   });
   return Task;
 };

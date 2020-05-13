@@ -1,5 +1,3 @@
-
-
 //Export Senior bulk create
 module.exports = [
     // Seniors info
