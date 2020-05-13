@@ -1,113 +1,98 @@
 //#region HTML Elements
 
-
-
 //#endregion
 
 //#region Global Variables
 
 //#endregion
 
-
 //#region Objects
 var API = {
-
-    //Create New Voluneteer
-    createVolunteer: function (data) {
-        return $.ajax({
-            headers: {
-                "Content-Type": "application/json"
-            },
-            type: "POST",
-            url: "/api/volunteers",
-            data: JSON.stringify(data)
-        });
-    },
-    //Get Volunteer Info
-    getVolunteerInfo: function () {
-        return $.ajax({
-            url: "api/volunteer/",
-            type: "GET"
-        });
-    },
-    //Update Volunteer Info
-    updateVolunteerInfo: function () {
-        return $.ajax({
-            headers: {
-                "Content-Type": "application/json"
-            },
-            type: "PUT",
-            url: "/api/volunteers",
-            data: JSON.stringify(data)
-        });
-    },
-    //Delete Volunteer
-    deleteExample: function (id) {
-        return $.ajax({
-            url: "api/volunteers/" + id,
-            type: "DELETE"
-        });
-    },
-    //Authenticate Volunteer
-    authenticate: function (user) {
-        return $.ajax({
-            url: "api/authenticate/" + user.email + "/" + user.password,
-            type: "GET"
-        });
-
-        ("api/authenticate/:email/:password");
-    }
-
+  //Create New Voluneteer
+  createVolunteer: function(data) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json",
+      },
+      type: "POST",
+      url: "/api/volunteers",
+      data: JSON.stringify(data),
+    });
+  },
+  //Get Volunteer Info
+  getVolunteerInfo: function() {
+    return $.ajax({
+      url: "api/volunteer/",
+      type: "GET",
+    });
+  },
+  //Update Volunteer Info
+  updateVolunteerInfo: function() {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json",
+      },
+      type: "PUT",
+      url: "/api/volunteers",
+      data: JSON.stringify(data),
+    });
+  },
+  //Delete Volunteer
+  deleteExample: function(id) {
+    return $.ajax({
+      url: "api/volunteers/" + id,
+      type: "DELETE",
+    });
+  },
+  //Authenticate Volunteer
+  authenticate: function(user) {
+    return $.ajax({
+      url: "api/authenticate/" + user.email + "/" + user.password,
+      type: "GET",
+    });
+  },
 };
 //#endregion
 
 //#region Functions
 function handleClickDay(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    //var selectedDate= data-date
+  //var selectedDate= data-date
 }
 
 function handleAddTask(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    // API.authenticate(data).then(function (result) {
-    //     //Load app page
-    //     if (!result.authentic) {
-    //         alert("password incorrect");
-    //         return;
-    //     } else {
-    //         var url = window.location.href + "app/" + result.id;
-    //         window.location.assign(url);
-    //     }
-    // });
+  // API.authenticate(data).then(function (result) {
+  //     //Load app page
+  //     if (!result.authentic) {
+  //         alert("password incorrect");
+  //         return;
+  //     } else {
+  //         var url = window.location.href + "app/" + result.id;
+  //         window.location.assign(url);
+  //     }
+  // });
 }
 
-function handleStartTask(event) { }
+function handleStartTask(event) {}
 
-function handleCompleteTask(event) { }
+function handleCompleteTask(event) {}
 //#endregion
 
 //#region Event Handlers
-$(document).ready(function () {
-
-    //Calendar(Populate calendar with date data and disabled buttons. when page renders task data will be passed to page, 
-    //FOR EACH task check IF date matches date data THEN set active with outline color. 
-
-    //Active task(When page renders, all task data will be passed to element, for every task True 
-    //and assigned to volunteer ID, create list for each)
-
-    //Activity(when page renders, get all task data, add to list IF task has volunteer ID and Completed True,)
-
-    //TO DO: Add task button click (send put request to update task to not 
-    //available and assigned to volunteer, refresh page)
-
-    //TO DO: Calendar day click (When you click on day the button color will be solid
-    //and will send api request for all task with that date and assigned false)
-
-    //TO DO: 
-
-
+$(document).ready(function() {
+  //Calendar(Populate calendar with date data and disabled buttons. when page renders task data will be passed to page,
+  //FOR EACH task check IF date matches date data THEN set active with outline color.
+  //Active task(When page renders, all task data will be passed to element, for every task True
+  //and assigned to volunteer ID, create list for each)
+  //Activity(when page renders, get all task data, add to list IF task has volunteer ID and Completed True,)
+  //TO DO: Add task button click (send put request to update task to not
+  //available and assigned to volunteer, refresh page)
+  //TO DO: Calendar day click (When you click on day the button color will be solid
+  //and will send api request for all task with that date and assigned false)
+  //TO DO:
 });
 //#endregion
 
