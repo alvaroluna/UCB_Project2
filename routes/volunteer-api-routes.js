@@ -16,7 +16,7 @@ module.exports = function(app) {
         email: req.params.email    
       }
     }).then(function(cb) {
-     
+       
      if (cb === null) {
        console.log("false")
        res.send(false);
@@ -28,7 +28,7 @@ module.exports = function(app) {
     });
   });
 
-
+ 
 
 
 
