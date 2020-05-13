@@ -15,7 +15,7 @@ Body-parser    * Express-Handlebars        * Chai
 * Alvaro Luna 		Javascript, Testing
 * Iyan Laylor		HTML, Javascript, Testing
 * Donna Johnson		Sequalize, Javascript, Heroku, Testing
-* Ben Fung		Javascript
+* Ben Fung		    Javascript
 
 ### File Structure:
 *	vscode
