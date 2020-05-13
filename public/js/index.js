@@ -139,7 +139,7 @@ function handleRegister(event) {
             //Load next page with volunteer info
             var url = window.location.href + "app/" + result.id;
             window.location.assign(url);
-        })
+        }) 
     }
     else if (result === true) {
         alert("Email address already exists !");
@@ -147,7 +147,7 @@ function handleRegister(event) {
         return;
     } 
 }) 
-   
+    
 }
 
 function handleLogIn(event) {
