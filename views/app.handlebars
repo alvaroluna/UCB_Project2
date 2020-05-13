@@ -118,13 +118,13 @@
                     {{> task/activeWalkingTask-block }}
                     {{/ifCond}}
                     {{#ifCond task 'Grooming' }}
-                    {{> task/activeTask-block }}
+                    {{> task/activeGroomingTask-block }}
                     {{/ifCond}}
                     {{#ifCond task 'Vet Visit' }}
-                    {{> task/activeTask-block }}
+                    {{> task/activeVetTask-block }}
                     {{/ifCond}}
                     {{#ifCond task 'Pet Sitting' }}
-                    {{> task/activeTask-block }}
+                    {{> task/activeSittingTask-block }}
                     {{/ifCond}}
                     {{/unless }}
                     {{/each}}
