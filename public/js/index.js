@@ -66,7 +66,9 @@ var API = {
 //#region Functions
 function handleRegister(event) {
   event.preventDefault();
-
+  if (!validateInputs()) {
+    return;
+  }
   var data = {
     //Get New User Data
     firstName: $("#new-first-name")
@@ -166,6 +168,42 @@ function handleLogIn(event) {
     }
   });
 }
+
+function validateInputs() {
+  if ($("#new-first-name").val() === "") {
+    alert("Please Enter First Name");
+    return false;
+  } else if ($("#new-last-name").val() === "") {
+    alert("Please Enter Last Name");
+    return false;
+  } else if ($("#new-dl-num").val() === "") {
+    alert("Please Enter Drivers Lic #");
+    return false;
+  } else if ($("#new-dl-state").val() === "") {
+    alert("Please Enter Drivers Lic State");
+    return false;
+  } else if ($("#new-dob").val() === "") {
+    alert("Please Enter Date of Birth");
+    return false;
+  } else if ($("#new-address").val() === "") {
+    alert("Please Enter Street Address");
+    return false;
+  } else if ($("#new-city").val() === "") {
+    alert("Please Enter Address City");
+    return false;
+  } else if ($("#new-state").val() === "") {
+    alert("Please Enter Address State");
+    return false;
+  } else if ($("#new-email").val() === "") {
+    alert("Please Enter Email");
+    return false;
+  } else if ($("#new-phone").val() === "") {
+    alert("Please Enter Phone Number");
+    return false;
+  } else {
+    return true;
+  }
+}
 //#endregion
 
 //#region Event Handlers
@@ -177,4 +215,3 @@ $(document).ready(function() {
   $logInBtn.on("click", handleLogIn);
 });
 //#endregion
-
